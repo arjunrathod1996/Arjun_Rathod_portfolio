@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://kit.fontawesome.com/759940ad25.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- --------------------------------------------------- -->
+    <div id = "header">
+<!-- --------------------------------------------------- -->
+        <div class = "container">
+            <nav>
+                <p class = "a">Arjun.</p>
+                <ul id ="sidemenu">
+                    <li><a href="#header">Home</a></li>   
+                    <li><a href="#about">About</a></li>   
+                    <li><a href="#skills">Skills</a></li>   
+                    <li><a href="#portfolio">Portfolio</a></li>   
+                    <li><a href="#contact">Contact</a></li>   
+                    <i class="fas fa-times" onclick="closemenu()"></i>
+                </ul>
+                <i class="fas fa-bars " onclick="openmenu()"></i>
+            </nav>
+        </div>
+<!-- --------------------------------------------------- -->
+        <div class = "header-text">
+
+            <h1>Hi, I'am <span class ="sp">Arjun</span> From Bengaluru</h1>
+
+        </div>
+<!-- --------------------------------------------------- -->
+    </div>
+<!-- --------------------------------------------------- -->
+
+<!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- About -->
+<!-- --------------------------------------------------- -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <!-- <div class="about-col-1">
+                    <img src="images/phoneba.png">
+                </div> -->
+                <div class="about-col-12">
+                    <h3 style="font-size: 40px;" class = "sub-title" >About Me</h3>
+        
+                    <p style="font-size: 18px;">Enthusiastic and detail-oriented full-stack developer with expertise in Java and Full Stack Development. Demonstrated proficiency in creating dynamic web applications and implementing key features. Committed to continuous learning and growth.</p>
+                    <br>
+                    <h3 style="font-size: 40px;" class = "sub-title" id="exp" >Professional Experience</h3>
+                    <br>
+                    <div id="sli">
+                        <span style="color: white;" id="sling">Slingloft Technologies Pvt Ltd </span>
+                        <span style="color: white;margin-left: 200px;" id="sling1"> | Karnataka, India </span>
+                        <span style="color: white;margin-left: 200px;" id="sling2"> | Nov 2022 - Present </span>
+                    </div>
+                    <br> 
+                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Developed and maintained Java-based web applications using the Spring framework enhancing system performance and functionality.</p>
+                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Implement RESTful APIs, improving data exchange and application scalability.</p>
+                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Implemented best coding practices to ensure a high-quality codebase.</p>
+                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Developed java applications and integrated them with MySQL databases, enhancing data processing and management.</p>
+                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Implement user-friendly interfaces, improving the overall user experience.</p>
+                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Utilized various frameworks and technologies, including Spring and Hibernate , enhance application performance.</p>
+                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Efficiently managed project workflows, consistently delivering high-quality work within stipulated timeframes, showcasing strong time management and prioritization skills.</p>
+                    <div class="tab-titles">
+                        <p class = "tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class = "tab-links" onclick="opentab('education')">Education</p>
+                        <p class = "tab-links" onclick="opentab('education-project')">Education Project</p>
+                        <!-- <p class = "tab-links" onclick="opentab('personal-project')">Personal Project</p> -->
+                    </div>
+
+                    
+                    <div class = "tab-content active-tab" id = "skills">
+                        <ul >
+                            <li style="font-family: cursive;"><i class="fa-brands fa-java"></i> Java</li>
+                            <li style="font-family: cursive;"><i class="fa-solid fa-leaf"></i> Spring Boot, Hibernate and Thymeleaf</li>
+                            <li style="font-family: cursive;"><i class="fa-brands fa-square-js"></i> JavaScript/JQuery</li>
+                            <li style="font-family: cursive;"><i class="fa-brands fa-html5"></i> HTML5</li>
+                            <li style="font-family: cursive;"><i class="fa-brands fa-css3"></i> CSS3</li>
+                            <li style="font-family: cursive;"><i class="fa-solid fa-database"></i> MySQL/Oracle</li>
+                            <li style="font-family: cursive;"><i class="fa-brands fa-python"></i> Python</li>
+                            <li style="font-family: cursive;"><i class="fa-solid fa-file-excel"></i> Excel</li>
+                            <li style="font-family: cursive;"><i class="fa-brands fa-react"></i> React</li>
+                        </ul>
+                    </div>
+
+
+                    <div class ="tab-content" id="education">
+                        <ul>
+                            <li  style="font-family: cursive;"><span>2018 - 2020</span><br>M.Tech in Structural Engineering at Visvesvaraya Technological University - Belagavi, India (2020)</li>
+                            <li  style="font-family: cursive;"><span>2014 - 2018</span><br>B.Tech in Civil Engineering at Ramaiah University Of Applied Sciences - Bangalore, India (2018)</li>
+                            <li  style="font-family: cursive;"><span>2012 - 2014</span><br> PUC at Shree Guru Nagalingeshwara - Gulbaraga, India (2014)</li>
+                        </ul>
+                    </div>
+
+
+                    <div class = "tab-content" id="education-project">
+                        <ul>
+                            <li><span>2020</span><br></li><div style="font-family: cursive; font-size: 18px">Comparative Data Analysis and Experimental Study on Modes of Fracture of Plain and RC Beams
+                                Determine the Stress Intensity Factor, Fracture Energy, various capacities in each dif erent position of Notch Beams.</div>
+                            <li><span>2018</span><br></li><div style="font-family: cursive;font-size: 18px;">Application of Artificial Intelligence in Pile Foundation
+                                Analyzed and created a model using MATLAB to determine the Load Bearing Capacity of Soil of Pile Foundation</div>
+                        </ul>
+                    </div>
+
+
+
+                    <!-- <div class = "tab-content" id="personal-project">
+                        <ul>
+                            <li><span>2022</span><br>Studied the growth of Xiaomi corporation in the Indian market by doing exploratory data   analysis using Excel, found a
+                                correlation between dependent variables & independent variables and then built & validated the model to Predict prices</li>
+                            <li><span>2022</span><br>Performed EDA, analyzed and explored data, found a correlation between dependent variables & independent variables<br>
+                            Built a predictive model using linear regression method to predict the price of the Ipad depending on the four
+                            important features which are screen size, storage, connectivity and generation</li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>   
+        <!-- About -->
+<!-- --------------------------------------------------- -->
+
+
+<!-- Portfolio -->
+
+
+<div id = "portfolio">
+    <div class = "container">
+            <h1 class = "sub-title_">Projects/Features</h1>
+            <div class="work-list">
+                <div class="work">
+                    <span style="color: white; font-size: 25px; text-decoration: underline;">Feature: Lucky Draw / Raffle Tickets : </span>
+                    <br><br>
+                    <div>
+                        Implemented a dynamic Lucky Draw (Raffle) system where customers earn Raffle Tickets based on their performance(Transactions), with a chance to win exciting prizes through a Lucky Draw.
+                    </div>
+                    <br>
+                  
+                    
+                  
+                    <div>
+                        <span style="color: white; font-size: 20px; text-decoration: underline;">Key Achievements:</span>
+                        
+                        <div style="margin-top: 10px;">
+                            <span style="color: white; font-size: 20px;">Pot Creation:</span>
+                            <div style="margin-top: 10px;">
+                                Created 'Pots', which are groups of tickets against which Lucky Draws are conducted.Utilized a dedicated database table 'raffle_pot' to manage Pot details including Pot Name, Ticket Prefix, and Ticket Value based on customer transactions.
+                            </div>
+
+                           
+
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                            <span style="color: white; font-size: 20px;">Ticket Generation:</span>
+                            <div style="margin-top: 10px;">
+                               <span style="color: white;">Developed a system to dynamically generate tickets based on transaction records from an external system.</span>
+                               <br>
+                               <span style="color: white;">Formatted each ticket with a unique structure: Prefix-Date-Seq, ensuring a continuous sequence for each Pot.                            </span>
+                            </div>
+
+                          
+
+                        </div>
+
+                        
+                        <div style="margin-top: 10px;">
+                            <span style="color: white; font-size: 20px;">Prize Management:                            </span>
+                            <div style="margin-top: 10px;">
+                               <span style="color: white;">Implemented a system to create and manage prizes with defined positions (1st, 2nd, etc.) and associated gifts.</span>
+                               <br>
+                               <span style="color: white;">Utilized a database table 'raffle_prize' to store prize details including business, position, count, and gift text.                            </span>
+                            </div>
+
+                           
+
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                            <span style="color: white; font-size: 20px;">Raffle Spin and Winner Selection:
+                            </span>
+                            <div style="margin-top: 10px;">
+                               <span style="color: white;">Enabled multiple runs of the Lucky Draw, generating one winner in each run. </span>
+                               <br>
+                               <span style="color: white;">Implemented a spinning process that selects eligible tickets and determines winners based on randomized ticket selection.                            </span>
+                            </div>
+                            
+                            
+                            
+
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                            <span style="color: white; font-size: 20px;">Raffle Run/Lucky Draw Page:</span>
+                            <div style="margin-top: 10px;">
+                               <span style="color: white;">Designed a separate interactive page to display the progress of the Raffle Run with real-time updates on winners and prize details.</span>
+                            </div>
+                        </div>
+
+                      
+
+                    </div>
+                </div> 
+            </div>
+
+            <br>
+
+            <div class="work">
+                <span style="color: white; font-size: 25px; text-decoration: underline;">Feature: Lead Activity :  </span>
+                <br><br>
+                <div>
+                    I designed and implemented a dynamic lead data management system to ensure the accuracy and timeliness of lead information. By integrating  contact sorting mechanisms and enabling seamless lead assignments, Additionally, I proficiently managed task tracking, prioritization, and real-time update.
+                </div>
+                <br>
+
+                <div>
+                    <span style="color: white; font-size: 20px; text-decoration: underline;">Key Achievements:</span>
+
+                    <div style="margin-top: 10px;">
+                        <span style="color: white; font-size: 20px;">Dynamic Lead Data Management:</span>
+                        <div style="margin-top: 10px;">
+                            Pioneered the creation and updating of leads, ensuring accuracy and timeliness in lead data management, significantly streamlining operations.
+                        </div>
+                        <div style="margin-top: 10px;">
+                            We Can Create Lead and We Can Set Source For Example (Store Visit,Enquiry,Campaign,linkedin). and we set Categorty also For Example (Shoes,Colths,Elecrical Things etc) and set as Priority according our priority For Example (Low,Medium,High and Crictical).
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                           While Update we can set State according out status For Example (Open,Inprocess,Proposal,Closure,Invalid and Not Intersted). and We can Set Net Follow-up Date Also.
+                        </div>
+
+                       
+
+                    </div>
+
+
+                    <div style="margin-top: 10px;">
+                        <span style="color: white; font-size: 20px;">Highlighted Technical Contributions:                        </span>
+                        <br>
+                        <span style="color: white; font-size: 20px;">Lead Contact Management:                        </span>
+
+                        <div style="margin-top: 10px;">
+                            Developed and refined functions for creating and updating lead contacts, pivotal to maintaining a comprehensive database of contacts essential for smooth lead interactions.
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                           We can set or create Contact Details For Leads. We can Add multiple contact From Same Lead With Respect to Designation,Location etc.
+                        </div>
+
+                      
+
+                    </div>
+
+
+                    <div style="margin-top: 10px;">
+                        <br>
+                        <span style="color: white; font-size: 20px;">Activity Tracking Enhancement:  </span>
+
+                        <div style="margin-top: 10px;">
+                            Elevated task tracing and activity tracking by implementing functions to add or update task-related activities, providing a clear overview of lead activities.
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                           We can set or create Contact Details For Leads. We can Add multiple contact From Same Lead With Respect to Designation,Location etc.
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                           We Can Track Contact With respect to Leads and We Can set type like How we connect with them For Example (Call,Email and Meeting). and We can set Status also According to discuss with Contact Person For Example (Open,complete and Cancel).
+                         </div>
+
+                    </div>
+
+
+                    <div style="margin-top: 10px;">
+                        <br>
+                        <span style="color: white; font-size: 20px;">Real-time Updates and Insights:                        </span>
+
+                        <div style="margin-top: 10px;">
+                            Elevated task tracing and activity tracking by implementing functions to add or update task-related activities, providing a clear overview of lead activities.
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                            Implemented features for real-time updates on lead activities and status changes, ensuring the team has the latest and most pertinent information at their fingertips.
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                            Proficient in task management and activity tracking, ensuring each task is well-organized and completed within the stipulated timeline.
+
+                         </div>
+
+                        
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <br>
+
+            <div class="work">
+                <span style="color: white; font-size: 25px; text-decoration: underline;">Feature: Activity Program Insight :                </span>
+                <br><br>
+                <div>
+                    Developed a comprehensive Activity Program Insight feature to provide an in-depth understanding of program activities, rewards, and customer engagement.
+                <br><br>
+
+               
+                
+                <span style="color: white; font-size: 20px;">Monthly Activity Graph:</span>
+                <div>
+                    Implemented a graphical representation showcasing activity count and reward distribution on a month-to-month basis.
+
+                   
+
+                </div>
+
+                <span style="color: white; font-size: 20px;">Displayed a concise overview of program statistics :</span>
+
+                <div>
+                    Number of program instances, Number of rewards, Number of customers and beneficiaries Total Data1 and Data2.
+
+                    
+                </div>
+
+                <span style="color: white; font-size: 20px;">Top Customers:</span>
+
+                <span style="color: white; font-size: 20px;">Enabled effective customer performance analysis by offering:                </span>
+
+                <div>
+                    Date-time filter for precise filtering, Customer names, Number of activities undertaken, Earned rewards.
+
+                   
+                </div>
+
+
+                <span style="color: white; font-size: 20px;">Top Beneficiaries                    : </span>
+
+                <span style="color: white; font-size: 20px;">Highlighted key beneficiaries, showcasing:                </span>
+
+                <div>
+                    Date-time filter for focused analysis, Customer names, Count and value of rewards allocated to each beneficiary.                
+
+                  
+                </div>
+
+                <span style="color: white; font-size: 20px;">Program Details:                </span>
+
+                <span style="color: white; font-size: 20px;">Presented detailed insights into each program, providing:                </span>
+
+                <div>
+                    Program name, Count and value of rewards associated with each program.
+
+
+                   
+
+                </div>
+
+                <div>
+                    Implemented relevant URL links, enhancing user experience and accessibility by allowing easy access to counts and redirects to activity instance pages.
+                    Implemented Insight Other Features Also.
+
+                </div>
+
+            </div>
+
+            <br>
+            
+            <div class="work">
+                <span style="color: white; font-size: 25px; text-decoration: underline;">Feature: Language Translation Integration :                 </span>
+                <br><br>
+                <div>
+                    Implemented a language translation feature to facilitate the dynamic conversion of text from English to other languages like Hindi, Kannada, and Spanish. The system is designed to provide a seamless 
+                    user experience by allowing users to select their preferred language and view the application's content in their chosen language.
+
+                <br><br>
+
+                <span style="color: white; font-size: 20px;">Key Implementations:                </span>
+
+                <div>
+                    Configured a message source to handle language-specific message properties.
+                Utilized Spring's LocaleResolver to manage user locale settings for language selection.
+                Developed an intuitive interface allowing users to select their desired language.
+                Integrated with a translation API to fetch real-time translations for improved multilingual functionality.
+
+                </div>
+                <br>
+
+                <span style="color: white; font-size: 20px;">Technologies Used:                </span>
+
+                <div>
+                    Java Spring Boot: Configured the application for language translation support.
+                    Thymeleaf: Utilized for dynamic rendering and interaction with the user interface.
+                    HTML, CSS, Bootstrap: Designed the user interface for language selection.
+                    JavaScript, AJAX: Integrated to enable seamless language change without page reloads.
+
+                </div>
+
+                
+            </div>
+
+            <br>
+
+            <div class="work">
+                <span style="color: white; font-size: 25px; text-decoration: underline;">PWA APP Enhancements : </span>
+                <br><br>
+                <span style="color: white; font-size: 20px;">Feature: Read Login OTP from SMS (Web OTP API): </span>
+
+                <div>
+                    Implemented functionality to read One-Time Password (OTP) from SMS using the Web OTP API.
+                    Supported both manual input and auto-detection of OTP from SMS.
+
+                </div>
+
+                
+                <span style="color: white; font-size: 20px;">Feature: Phone Contact Picker for Referrals  </span>
+                <br>
+                <span style="color: white; font-size: 16px;">Enhanced the application to include a phone contact picker for easier referral invitations.</span>
+
+                <br><br>
+
+                <span style="color: white; font-size: 20px;">Implemented the following:                </span>
+
+                <div>
+                    Displayed a contact picker within the referral functionality.<br>
+                    Enabled users to select contacts for sending referral invites, capturing essential details such as:
+                    First name , Last name , Phone number, Email <br>
+                    Pick multiple Contacts (max 10) to send Invite. And after Successful Show the count of contacts selected and contact Name as Tags/Libs <br>
+                    And here before Refer it will skip the existing customer and refer to a new customer or contact. <br>
+                    Option to Unselect contact before submitting
+
+                </div>
+
+                <br>
+                
+                <div class="work">
+                    
+                    <span style="color: white; font-size: 25px; text-decoration: underline;">Feature: FAQ Section: </span>
+    
+                    <div>
+                        Enhanced FAQ section with Spring MVC backend logic, organizing topics and Q&A pairs. Implemented a dynamic Thymeleaf-based frontend with collapsible elements, supporting multimedia content. Applied responsive styling and interactive JavaScript for a seamless user experience. Key technologies: Spring MVC, Java, Thymeleaf, HTML, CSS, JavaScript, jQuery. Improved content organization and prioritization, ensuring multimedia integration within FAQs.
+                    </div>
+    
+                    
+                    
+                </div>
+              
+
+
+            </div>
+
+    </div>
+</div>
+
+
+<div id = "portfolio">
+    <div class = "container">
+            <h1 class = "sub-title">Front-End Web development projects</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="work-3.png">
+                    <div class="layer">
+                        <h3>Ecommerce Website</h3>
+                        <p>Responsive E-Commerce website by using HTML and CSS</p>
+                        <a href="https://arjunrathod1996.github.io/Ecommerce-website.github.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="work-1.png">
+                    <div class="layer">
+                        <h3>Netflix Website Clone</h3>
+                        <p>Responsive Netflix clone website By using HTML and CSS</p>
+                        <a href="https://arjunrathod1996.github.io/Netflix-clone-webdesign.github.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="work-2.png">
+                    <div class="layer">
+                        <h3>Meta Website Clone</h3>
+                        <p>Responsive Meta clone website By using HTML and CSS with Dark Theme</p>
+                        <a href="https://arjunrathod1996.github.io/Facebook-Clone-Website.github.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div> 
+
+
+                <div class="work">
+                    <img src="work-3.png">
+                    <div class="layer">
+                        <h3>Restaurant Website</h3>
+                        <p>Responsive Restaurant website By using HTML and CSS with Animation</p>
+                        <a href="https://arjunrathod1996.github.io/Restaurant-website.github.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div> 
+            </div>
+    </div>
+</div>
+
+
+
+<div id = "portfolio">
+    <div class = "container">
+            <h1 class = "sub-title">Front-End and Back-End Projects</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="work-1.png">
+                    <div class="layer">
+                        <h3>Employee Management System</h3>
+                        <p>Employee Management System Project By using SpringMVC, Hibernate and BootStrap (Spring Tool Suite)</p>
+                        <a href="https://github.com/arjunrathod1996/Employee-System-CRUD-springmvc-and-hibernate"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="work-2.png">
+                    <div class="layer">
+                        <h3>User Login Authentication Module Java Web Project </h3>
+                        <p>Login and Logout Authentication Module by using Servlet, Jsp, MySQL and after logout clear all cache from the browser (Java Eclipse)</p>
+                        <a href="https://github.com/arjunrathod1996/Login-Logout-Servlet-Jsp-Mysql"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="work-3.png">
+                    <div class="layer">
+                        <h3>TODO Web Application Project</h3>
+                        <p>ToDo Web Application Project by using Servlet, Jsp, Jstl , MySQL and BootStrap (Java Eclipse) </p>
+                        <a href="https://arjunrathod1996.github.io/Facebook-Clone-Website.github.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div> 
+            </div>
+            <a href="#" class = "btn">See more</a>
+    </div>
+</div>
+
+
+
+<!-- Contact -->
+
+<div id="contact">
+    <div class="container">
+        <div class = "row">
+            <div class="contact-left">
+                <h1 class = "sub-title">Contact Me</h1>
+                <p><i class="fa-solid fa-paper-plane"></i> arjundargurathod@gmail.com</p>
+                <p><i class="fa-solid fa-square-phone"></i> 8217308285</p>
+                <div class = "social-icons">
+                    <a href="https://github.com/arjunrathod1996"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/arjundr/"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+
+                <a href="my-cv.pdf" download="" class="btn btn2">Download CV</a>
+
+
+            </div>
+
+            <div class="contact-right">
+                <form name = "submit-to-google-sheet">
+                    <input type = "text" name = "Name" placeholder="Your Name" required>
+                    <input type="email" name = "Email" placeholder="Your Email" required>
+                    <textarea name = "Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class ="btn btn2">Submit</button>
+                </form>
+                <span id = "msg"></span>
+            </div>
+        </div>
+    </div>
+
+<div class="copyright">
+    <p> copyright <i class="fa-solid fa-copyright"></i> Arjun. <i class="fa-solid fa-heart"></i></p>
+</div>
+</div>
+
+
+<!-- Script -->
+
+<script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-content");
+
+    function opentab(tabname){
+
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+
+        event.currentTarget.classList.add("active-link");
+
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+</script>
+
+<script>
+
+var sidemenu = document.getElementById("sidemenu");
+
+function openmenu(){
+    sidemenu.style.right = "0";
+}
+
+function closemenu(){
+    sidemenu.style.right = "-200px";
+}
+
+</script>
+
+<script>
+    const scriptURL = '<https://script.google.com/macros/s/AKfycbwqeZS7X3DDz-sQnJVXw2_KqR_jhR_VgwejLtSSovJwqATOsaLGuwwX-V0PwZ5RTNNpQA/exec>'
+    const form = document.forms['submit-to-google-sheet']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+</body>
+</html>
