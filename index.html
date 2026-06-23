@@ -1,658 +1,1108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arjun Rathod — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/759940ad25.js" crossorigin="anonymous"></script>
+<style>
+:root{
+  --black:#0A0A0B;--surface:#111113;--surface2:#18181C;
+  --border:#232328;--border2:#2E2E36;
+  --text:#F0EFF4;--text2:#9998A8;--text3:#5C5B6E;
+  --accent:#6C63FF;--accent2:#8B85FF;--accent-glow:rgba(108,99,255,0.18);
+  --green:#22C55E;--amber:#F59E0B;--red:#EF4444;--blue:#3B82F6;
+  --teal:#14B8A6;
+  --mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
 
-    <link rel="stylesheet" href="style.css">
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(10,10,11,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:18px;font-weight:500;color:var(--accent2);letter-spacing:-0.5px}
+.nav-logo span{color:var(--text3)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:12px;color:var(--text2);text-decoration:none;letter-spacing:0.05em;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{font-family:var(--mono);font-size:12px;color:var(--accent2);border:1px solid var(--accent);padding:7px 18px;border-radius:4px;text-decoration:none;transition:background .2s,color .2s}
+.nav-cta:hover{background:var(--accent);color:#fff}
 
-    <script src="https://kit.fontawesome.com/759940ad25.js" crossorigin="anonymous"></script>
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:0 48px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;width:100%}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;color:var(--accent2);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--accent)}
+.hero-name{font-family:var(--sans);font-size:clamp(42px,5vw,68px);font-weight:700;line-height:1.08;letter-spacing:-1.5px;margin-bottom:16px}
+.hero-name .first{color:var(--text)}.hero-name .last{color:var(--accent2)}
+.hero-role{font-family:var(--mono);font-size:13px;color:var(--text2);margin-bottom:28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-bio{font-size:15px;color:var(--text2);line-height:1.75;max-width:480px;margin-bottom:40px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{font-family:var(--mono);font-size:12px;background:var(--accent);color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;letter-spacing:0.05em;transition:background .2s,transform .15s}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-ghost{font-family:var(--mono);font-size:12px;color:var(--text2);border:1px solid var(--border2);padding:12px 28px;border-radius:4px;text-decoration:none;letter-spacing:0.05em;transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent2)}
+.hero-stats{background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:32px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.stat-num{font-family:var(--sans);font-size:32px;font-weight:700;color:var(--accent2);line-height:1;margin-bottom:4px}
+.stat-label{font-family:var(--mono);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em}
+.tech-row{display:flex;flex-wrap:wrap;gap:7px;padding-top:20px;border-top:1px solid var(--border)}
+.tech-pill{font-family:var(--mono);font-size:11px;color:var(--text2);background:var(--surface);border:1px solid var(--border);padding:3px 9px;border-radius:4px}
+#hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.2;pointer-events:none}
+#hero::after{content:'';position:absolute;top:20%;left:50%;width:700px;height:700px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none;transform:translateX(-50%)}
+
+/* ── SECTIONS ── */
+section{padding:90px 48px;max-width:1200px;margin:0 auto}
+.section-label{font-family:var(--mono);font-size:11px;color:var(--accent2);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-family:var(--sans);font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-0.5px;margin-bottom:48px;line-height:1.2}
+.section-title span{color:var(--accent2)}
+.full-divider{height:1px;background:var(--border);margin:0 48px}
+
+/* ── BADGES ── */
+.badge-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.badge{font-family:var(--mono);font-size:11px;padding:4px 11px;border-radius:20px;border:1px solid}
+.badge-green{color:var(--green);border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.07)}
+.badge-amber{color:var(--amber);border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.07)}
+.badge-accent{color:var(--accent2);border-color:rgba(108,99,255,.4);background:rgba(108,99,255,.07)}
+.badge-red{color:#f87171;border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.07)}
+.badge-teal{color:var(--teal);border-color:rgba(20,184,166,.4);background:rgba(20,184,166,.07)}
+
+/* ── EXPERIENCE ── */
+.exp-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:36px;margin-bottom:20px;position:relative;overflow:hidden;transition:border-color .2s}
+.exp-card:hover{border-color:var(--accent)}
+.exp-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+.exp-card.sg::before{background:var(--red)}.exp-card.sg:hover{border-color:var(--red)}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.exp-company{font-family:var(--sans);font-size:20px;font-weight:600;color:var(--text)}
+.exp-title{font-family:var(--mono);font-size:12px;color:var(--accent2);margin-top:4px}
+.exp-card.sg .exp-title{color:#f87171}
+.exp-period{font-family:var(--mono);font-size:12px;color:var(--text3)}
+.exp-location{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:2px}
+.exp-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.exp-stack-tag{font-family:var(--mono);font-size:10px;color:var(--text3);background:var(--surface2);border:1px solid var(--border);padding:2px 8px;border-radius:3px}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
+.exp-bullets li{font-size:14px;color:var(--text2);padding-left:20px;position:relative;line-height:1.6}
+.exp-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:11px;top:3px}
+.exp-card.sg .exp-bullets li::before{color:#f87171}
+.exp-bullets li strong{color:var(--text)}
+.exp-impact{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--green);background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);padding:1px 7px;border-radius:3px;margin-left:6px;vertical-align:middle}
+
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:18px}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;transition:border-color .2s,transform .15s}
+.skill-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.skill-card-icon{font-size:20px;margin-bottom:12px}
+.skill-card-title{font-family:var(--sans);font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tag{font-family:var(--mono);font-size:11px;color:var(--text2);background:var(--surface2);border:1px solid var(--border);padding:3px 9px;border-radius:4px}
+.skill-tag.hot{color:var(--accent2);border-color:rgba(108,99,255,0.35);background:rgba(108,99,255,0.08)}
+.skill-tag.sg{color:#f87171;border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.06)}
+.skill-tag.ai{color:var(--teal);border-color:rgba(20,184,166,0.35);background:rgba(20,184,166,0.08)}
+
+/* ── SCREENSHOT SHOWCASE ── */
+.showcase-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 48px}
+.showcase-inner{max-width:1200px;margin:0 auto}
+.showcase-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.showcase-tab{font-family:var(--mono);font-size:12px;padding:8px 18px;border-radius:6px;border:1px solid var(--border2);color:var(--text2);cursor:pointer;transition:all .2s;background:transparent}
+.showcase-tab.active,.showcase-tab:hover{border-color:var(--accent);color:var(--accent2);background:rgba(108,99,255,0.08)}
+.showcase-tab.ai-tab.active,.showcase-tab.ai-tab:hover{border-color:var(--teal);color:var(--teal);background:rgba(20,184,166,0.08)}
+.screenshot-panel{display:none}
+.screenshot-panel.active{display:block}
+.screenshot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(500px,1fr));gap:20px}
+.screenshot-grid.single{grid-template-columns:1fr}
+.screenshot-grid.three{grid-template-columns:repeat(3,1fr)}
+.screenshot-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s,transform .2s}
+.screenshot-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.screenshot-card.ai-card:hover{border-color:var(--teal)}
+.screenshot-img{width:100%;display:block;border-bottom:1px solid var(--border)}
+.screenshot-caption{padding:14px 16px}
+.screenshot-caption h4{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.screenshot-caption p{font-size:12px;color:var(--text2);line-height:1.6}
+.ai-badge-inline{font-family:var(--mono);font-size:10px;color:var(--teal);background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:6px}
+.security-badge-inline{font-family:var(--mono);font-size:10px;color:#f87171;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:6px}
+.audit-badge-inline{font-family:var(--mono);font-size:10px;color:var(--amber);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:6px}
+
+/* ── AI HIGHLIGHT BANNER ── */
+.ai-banner{background:linear-gradient(135deg,rgba(20,184,166,0.08) 0%,rgba(108,99,255,0.08) 100%);border:1px solid rgba(20,184,166,0.25);border-radius:16px;padding:36px;margin-bottom:48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.ai-banner-title{font-family:var(--sans);font-size:24px;font-weight:700;color:var(--text);margin-bottom:12px;line-height:1.3}
+.ai-banner-title span{color:var(--teal)}
+.ai-banner-desc{font-size:14px;color:var(--text2);line-height:1.75}
+.ai-feature-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ai-feature-list li{font-size:13px;color:var(--text2);padding-left:20px;position:relative;line-height:1.6}
+.ai-feature-list li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:11px;top:3px}
+.ai-feature-list li strong{color:var(--text)}
+
+/* ── PROJECTS ── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;display:flex;flex-direction:column;transition:border-color .2s,transform .15s}
+.project-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.project-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.project-eyebrow{font-family:var(--mono);font-size:11px;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px}
+.project-title{font-family:var(--sans);font-size:19px;font-weight:600;margin-bottom:10px;color:var(--text)}
+.project-desc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px;flex:1}
+.project-stack{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
+.stack-tag{font-family:var(--mono);font-size:10px;color:var(--text3);background:var(--surface2);border:1px solid var(--border);padding:2px 7px;border-radius:3px}
+.stack-tag.ai{color:var(--teal);border-color:rgba(20,184,166,.3);background:rgba(20,184,166,.06)}
+.project-links{display:flex;gap:10px;margin-top:auto}
+.project-link{font-family:var(--mono);font-size:11px;color:var(--accent2);text-decoration:none;border:1px solid rgba(108,99,255,.35);padding:6px 13px;border-radius:4px;transition:background .2s}
+.project-link:hover{background:rgba(108,99,255,.15)}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.feature-list li{font-size:13px;color:var(--text2);padding-left:16px;position:relative;line-height:1.6}
+.feature-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:10px;top:3px}
+.note-box{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:12px 14px;font-family:var(--mono);font-size:11px;color:var(--amber);line-height:1.6;margin-top:14px}
+
+/* ── FEATURE CARDS ── */
+.feat-section-label{font-family:var(--sans);font-size:15px;font-weight:600;color:var(--text2);margin:40px 0 18px;display:flex;align-items:center;gap:14px}
+.feat-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.co-badge{font-family:var(--mono);font-size:11px;padding:3px 10px;border-radius:4px}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;transition:border-color .2s}
+.feature-card:hover{border-color:var(--accent)}
+.feature-card.sg-feat:hover{border-color:var(--red)}
+.feature-card.ai-feat:hover{border-color:var(--teal)}
+.feature-card-icon{width:36px;height:36px;background:var(--accent-glow);border:1px solid rgba(108,99,255,.3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;margin-bottom:12px}
+.feature-card.sg-feat .feature-card-icon{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.25)}
+.feature-card.ai-feat .feature-card-icon{background:rgba(20,184,166,.08);border-color:rgba(20,184,166,.25)}
+.feature-card-title{font-family:var(--sans);font-size:14px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.feature-card-desc{font-size:12px;color:var(--text2);line-height:1.65}
+.feat-company{font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:8px}
+.feat-sl{color:var(--accent2);background:rgba(108,99,255,.1);border:1px solid rgba(108,99,255,.25)}
+.feat-sg{color:#f87171;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}
+.feat-personal{color:var(--amber);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25)}
+.feat-ai{color:var(--teal);background:rgba(20,184,166,.08);border:1px solid rgba(20,184,166,.2)}
+
+/* ── CLIENTRADE SECTION ── */
+.clientrade-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;margin-bottom:20px}
+.cr-card{background:var(--surface);border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:22px;transition:border-color .2s}
+.cr-card:hover{border-color:var(--amber)}
+.cr-card.ai-cr{border-color:rgba(20,184,166,.2)}.cr-card.ai-cr:hover{border-color:var(--teal)}
+.cr-card-icon{font-size:18px;margin-bottom:10px}
+.cr-card-title{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px}
+.cr-card-desc{font-size:12px;color:var(--text2);line-height:1.6}
+
+/* ── EDUCATION ── */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.edu-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px}
+.edu-period{font-family:var(--mono);font-size:11px;color:var(--accent2);margin-bottom:6px}
+.edu-degree{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.edu-school{font-size:12px;color:var(--text2)}
+
+/* ── CONTACT ── */
+#contact-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 48px}
+.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-info-title{font-family:var(--sans);font-size:34px;font-weight:700;margin-bottom:14px;letter-spacing:-0.5px}
+.contact-info-sub{font-size:14px;color:var(--text2);margin-bottom:32px;line-height:1.7}
+.contact-detail{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-family:var(--mono);font-size:13px;color:var(--text2)}
+.contact-detail i{color:var(--accent2);width:16px}
+.social-row{display:flex;gap:10px;margin-top:24px}
+.social-btn{width:38px;height:38px;border:1px solid var(--border2);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--text2);text-decoration:none;font-size:15px;transition:border-color .2s,color .2s}
+.social-btn:hover{border-color:var(--accent);color:var(--accent2)}
+.contact-form{display:flex;flex-direction:column;gap:12px}
+.contact-form input,.contact-form textarea{background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--body);font-size:14px;padding:11px 14px;outline:none;transition:border-color .2s}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--text3)}
+.contact-form textarea{resize:vertical;min-height:120px}
+.form-submit{font-family:var(--mono);font-size:12px;background:var(--accent);color:#fff;border:none;padding:13px;border-radius:8px;cursor:pointer;letter-spacing:0.05em;transition:background .2s}
+.form-submit:hover{background:var(--accent2)}
+
+footer{padding:24px 48px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:var(--text3);border-top:1px solid var(--border)}
+
+@media(max-width:900px){
+  nav{padding:0 20px}.nav-links{display:none}
+  #hero,section{padding:70px 20px}
+  .hero-grid,.project-card.featured,.contact-inner,.ai-banner{grid-template-columns:1fr;gap:40px}
+  #contact-section,.showcase-section{padding:60px 20px}
+  footer{padding:18px 20px;flex-direction:column;gap:6px;text-align:center}
+  .full-divider{margin:0 20px}
+  .screenshot-grid{grid-template-columns:1fr !important}
+}
+</style>
 </head>
 <body>
-<!-- --------------------------------------------------- -->
-    <div id = "header">
-<!-- --------------------------------------------------- -->
-        <div class = "container">
-            <nav>
-                <p class = "a">Arjun.</p>
-                <ul id ="sidemenu">
-                    <li><a href="#header">Home</a></li>   
-                    <li><a href="#about">About</a></li>   
-                    <li><a href="#skills">Skills</a></li>   
-                    <li><a href="#portfolio">Portfolio</a></li>   
-                    <li><a href="#contact">Contact</a></li>   
-                    <i class="fas fa-times" onclick="closemenu()"></i>
-                </ul>
-                <i class="fas fa-bars " onclick="openmenu()"></i>
-            </nav>
+
+<nav>
+  <div class="nav-logo">arjun<span>.dev</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#screenshots">Screenshots</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#contact-section">Contact</a></li>
+  </ul>
+  <a href="Arjun Resume.pdf" download class="nav-cta">Download CV</a>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Full Stack Developer · Bengaluru, India</div>
+      <h1 class="hero-name"><span class="first">Arjun</span><br><span class="last">Rathod</span></h1>
+      <div class="hero-role">
+        <span class="dot"></span>
+        <span>Available for opportunities</span>
+        <span style="color:var(--text3)">·</span>
+        <span style="color:var(--text3)">3 years · 2 companies</span>
+        <span style="color:var(--text3)">·</span>
+        <span style="color:var(--text3)">Java + React + AI</span>
+      </div>
+      <p class="hero-bio">Full stack developer with 3 years across Slingloft Technologies and Societe Generale. Built production systems including an <strong style="color:var(--teal)">AI Chatbot Assistant</strong> integrated into CRM using Claude API, PostgreSQL materialized views, Apache POI automation, MSW mocking, react-intl i18n, JWT/OTP/OAuth2 auth, and DB trigger-based audit trails.</p>
+      <div class="hero-actions">
+        <a href="#experience" class="btn-primary">View Experience</a>
+        <a href="#screenshots" class="btn-ghost">See Screenshots</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-grid">
+        <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Companies</div></div>
+        <div class="stat-item"><div class="stat-num">80%</div><div class="stat-label">Manual Effort Cut</div></div>
+        <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">i18n Translations</div></div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-pill">Java</span><span class="tech-pill">Spring Boot</span><span class="tech-pill">React</span>
+        <span class="tech-pill">PostgreSQL</span><span class="tech-pill">AI Chatbot</span>
+        <span class="tech-pill">Apache POI</span><span class="tech-pill">MSW</span>
+        <span class="tech-pill">JWT</span><span class="tech-pill">OAuth2</span><span class="tech-pill">Kafka</span>
+        <span class="tech-pill">Redis</span><span class="tech-pill">Docker</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// 01 about</div>
+  <h2 class="section-title">Who I <span>Am</span></h2>
+  <div style="max-width:760px">
+    <p style="font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:18px">
+      I'm a full stack Java developer with 3 years of professional experience building enterprise systems. At Slingloft Technologies I built an enterprise CRM platform (Java, Spring Boot, Thymeleaf) shipping features like PDF invoice generation, Lucky Draw raffle systems, PWA enhancements with Web OTP API & Contact Picker API, role-based dashboards, and lead lifecycle management.
+    </p>
+    <p style="font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:18px">
+      For the past 2 years at Societe Generale, I've worked on financial compliance and IAM systems (Spring Boot + React) — delivering PostgreSQL materialized views for 5× faster search, cron-based audit automation (+40% SLA), Apache POI Excel tools cutting manual work by ~80%, MSW API mocking (+65% test coverage), and react-intl i18n supporting 500+ translations.
+    </p>
+    <p style="font-size:15px;color:var(--teal);line-height:1.8;margin-bottom:28px;font-weight:500">
+      My personal project Clientrade goes beyond a standard CRM — it features an integrated <strong>AI Chatbot Assistant</strong> (Claude API) that understands your actual CRM data: leads, contacts, activities, follow-ups, and sales insights. It's domain-scoped, rate-limited, and context-aware. Also includes DB trigger-based audit trails, OTP rate limiting, role-isolated data scoping, and out-of-domain query rejection.
+    </p>
+    <div class="badge-strip">
+      <span class="badge badge-accent">Slingloft · 1 yr · Thymeleaf</span>
+      <span class="badge badge-red">Societe Generale · 2 yrs · React</span>
+      <span class="badge badge-teal">✦ AI Chatbot · Claude API</span>
+      <span class="badge badge-green">✓ PDF + Excel Export</span>
+      <span class="badge badge-green">✓ IAM & Compliance Automation</span>
+      <span class="badge badge-amber">✓ i18n · 500+ translations</span>
+      <span class="badge badge-accent">✓ JWT + OAuth2 + OTP Auth</span>
+      <span class="badge badge-amber">✓ DB Trigger Audit Trail</span>
+      <span class="badge badge-teal">✓ Rate Limiting · Role Isolation</span>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// 02 skills</div>
+  <h2 class="section-title">Technical <span>Stack</span></h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-icon">🤖</div>
+      <div class="skill-card-title">AI Integration</div>
+      <div class="skill-tags">
+        <span class="skill-tag ai">Claude API</span><span class="skill-tag ai">AI Chatbot</span>
+        <span class="skill-tag ai">Context-Aware AI</span><span class="skill-tag ai">Domain Scoping</span>
+        <span class="skill-tag ai">Rate Limiting</span><span class="skill-tag">Prompt Engineering</span>
+      </div>
+    </div>
+    <div class="skill-card">
+  <div class="skill-card-icon">🩺</div>
+  <div class="skill-card-title">Health Monitoring</div>
+  <div class="skill-tags">
+    <span class="skill-tag">Spring @Scheduled</span>
+    <span class="skill-tag">Health Checks</span>
+    <span class="skill-tag">JavaMailSender</span>
+    <span class="skill-tag">REST APIs</span>
+    <span class="skill-tag">Response Time Tracking</span>
+    <span class="skill-tag">Spring Data JPA</span>
+  </div>
+</div>
+    <div class="skill-card">
+      <div class="skill-card-icon">☕</div>
+      <div class="skill-card-title">Backend — Java</div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">Java 8+</span><span class="skill-tag hot">Spring Boot</span>
+        <span class="skill-tag">Spring MVC</span><span class="skill-tag">Spring Security</span>
+        <span class="skill-tag">Hibernate / JPA</span><span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">Cron Scheduler</span><span class="skill-tag">Java Stream API</span>
+        <span class="skill-tag">Microservices</span><span class="skill-tag">Swagger / OpenAPI</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">⚛️</div>
+      <div class="skill-card-title">Frontend — React & Web</div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">React.js</span><span class="skill-tag hot">Thymeleaf</span>
+        <span class="skill-tag">JavaScript / jQuery</span><span class="skill-tag">AJAX</span>
+        <span class="skill-tag">HTML5 / CSS3</span><span class="skill-tag">Bootstrap</span>
+        <span class="skill-tag">Tailwind CSS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🗄️</div>
+      <div class="skill-card-title">Database</div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">MySQL</span><span class="skill-tag hot">PostgreSQL</span>
+        <span class="skill-tag sg">Materialized Views</span><span class="skill-tag">Spring Data JPA</span>
+        <span class="skill-tag">DB Triggers</span><span class="skill-tag">Liquibase</span>
+        <span class="skill-tag">Oracle</span><span class="skill-tag ai">Redis (Caching)</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">📡</div>
+      <div class="skill-card-title">Messaging & Cloud</div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">Apache Kafka</span><span class="skill-tag">Real-time Pipelines</span>
+        <span class="skill-tag">Amazon S3</span><span class="skill-tag">StreamTransferManager</span>
+        <span class="skill-tag">Multipart Upload</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">📄</div>
+      <div class="skill-card-title">File Generation & Export</div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">Apache POI</span><span class="skill-tag hot">ITextRenderer</span>
+        <span class="skill-tag">Flying Saucer</span><span class="skill-tag">Thymeleaf PDF</span>
+        <span class="skill-tag">Excel .xlsx</span><span class="skill-tag">Streaming Response</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🌍</div>
+      <div class="skill-card-title">i18n & Testing</div>
+      <div class="skill-tags">
+        <span class="skill-tag sg">react-intl</span><span class="skill-tag sg">500+ translations</span>
+        <span class="skill-tag sg">MSW (API mocking)</span><span class="skill-tag">JUnit 5</span>
+        <span class="skill-tag">Spring LocaleResolver</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🔒</div>
+      <div class="skill-card-title">Security & Auth</div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">JWT</span><span class="skill-tag hot">Spring Security</span>
+        <span class="skill-tag">OAuth2 (Google/GitHub)</span><span class="skill-tag">OTP Auth</span>
+        <span class="skill-tag">Rate Limiting</span><span class="skill-tag sg">IAM workflows</span>
+        <span class="skill-tag ai">Audit Trail (DB Trigger)</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">📱</div>
+      <div class="skill-card-title">PWA & Browser APIs</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Web OTP API</span><span class="skill-tag">Contact Picker API</span>
+        <span class="skill-tag">Geo Code API</span><span class="skill-tag">Tags Input</span>
+        <span class="skill-tag">PWA</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🛠️</div>
+      <div class="skill-card-title">Tools & DevOps</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git / GitHub</span><span class="skill-tag">Maven</span>
+        <span class="skill-tag">Docker</span><span class="skill-tag">Jenkins CI/CD</span>
+        <span class="skill-tag">GitHub Actions</span><span class="skill-tag">SLF4J Logging</span>
+        <span class="skill-tag sg">Audit Trail</span><span class="skill-tag">JavaMailSender</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// 03 experience</div>
+  <h2 class="section-title">Where I've <span>Worked</span></h2>
+
+  <div class="exp-card sg">
+    <div class="exp-header">
+      <div>
+        <div class="exp-company">Societe Generale</div>
+        <div class="exp-title" style="color:#f87171">Software Developer — Spring Boot + React</div>
+      </div>
+      <div class="exp-meta">
+        <div class="exp-period">2024 — Present · 2 years</div>
+        <div class="exp-location">Karnataka, India</div>
+      </div>
+    </div>
+    <div class="exp-stack">
+      <span class="exp-stack-tag">Spring Boot</span><span class="exp-stack-tag">React.js</span>
+      <span class="exp-stack-tag">PostgreSQL</span><span class="exp-stack-tag">Apache POI</span>
+      <span class="exp-stack-tag">MSW</span><span class="exp-stack-tag">react-intl</span>
+      <span class="exp-stack-tag">Kafka</span><span class="exp-stack-tag">Redis</span>
+      <span class="exp-stack-tag">Docker</span><span class="exp-stack-tag">Cron Scheduler</span>
+    </div>
+    <ul class="exp-bullets">
+      <li>Designed end-to-end data handling using <strong>PostgreSQL materialized views</strong> — 5× faster search and reusable React server-side tables reducing UI duplication by ~70%. <span class="exp-impact">5× faster</span></li>
+      <li>Implemented <strong>backend cron schedulers with audit trail tracking</strong>, improving SLA compliance by ~40% and full regulatory traceability across financial workflows. <span class="exp-impact">+40% SLA</span></li>
+      <li>Built <strong>Apache POI Excel automation tools</strong> for IAM & compliance — reducing manual effort by ~80% across identity access management reporting. <span class="exp-impact">−80% effort</span></li>
+      <li>Enabled frontend independence using <strong>MSW (Mock Service Worker)</strong> API mocking — increasing test coverage by ~65% without backend dependency. <span class="exp-impact">+65% coverage</span></li>
+      <li>Built scalable <strong>internationalisation using react-intl</strong> supporting 500+ translation strings across multiple languages. <span class="exp-impact">500+ strings</span></li>
+      <li>Leveraged <strong>Apache Kafka</strong> for real-time data pipelines, <strong>Redis</strong> for caching, <strong>Amazon S3</strong> for secure file uploads, and <strong>JUnit 5</strong> for unit and integration testing across services.</li>
+    </ul>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-company">Slingloft Technologies Pvt Ltd</div>
+        <div class="exp-title">Software Developer — Java / Spring Boot / Thymeleaf</div>
+      </div>
+      <div class="exp-meta">
+        <div class="exp-period">Nov 2022 — 2024 · 1+ year</div>
+        <div class="exp-location">Karnataka, India</div>
+      </div>
+    </div>
+    <div class="exp-stack">
+      <span class="exp-stack-tag">Java</span><span class="exp-stack-tag">Spring Boot</span>
+      <span class="exp-stack-tag">Thymeleaf</span><span class="exp-stack-tag">MySQL</span>
+      <span class="exp-stack-tag">Apache POI</span><span class="exp-stack-tag">ITextRenderer</span>
+      <span class="exp-stack-tag">Spring Security</span><span class="exp-stack-tag">AJAX / jQuery</span>
+    </div>
+    <ul class="exp-bullets">
+      <li>Built <strong>PDF invoice generation</strong> pipeline — Thymeleaf HTML → ITextRenderer (Flying Saucer) → PDF bytes streamed via HttpServletResponse. Zero disk I/O, all in-memory.</li>
+      <li>Implemented <strong>Excel billing export</strong> using Apache POI XSSFWorkbook — paginated and full-dataset export modes with styled headers.</li>
+      <li>Developed complete <strong>Lucky Draw / Raffle system</strong> — Prefix-Date-Seq ticket generation, pot management, prize tracking, randomised winner selection, real-time spin UI.</li>
+      <li>Built <strong>Activity Program Insights dashboard</strong> — monthly graph, reward distribution, Top Customers and Beneficiaries with date-time filter, all role-scoped.</li>
+      <li>Implemented <strong>PWA enhancements</strong> — Web OTP API auto-read from SMS, Contact Picker API (max 10 contacts, duplicate filter), Spring LocaleResolver (EN / Hindi / Kannada / Spanish).</li>
+    </ul>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// 04 projects</div>
+  <h2 class="section-title">Things I've <span>Built</span></h2>
+  <div class="projects-grid">
+    <div class="project-card featured">
+      <div>
+        <div class="project-eyebrow">⭐ Personal Project — Clientrade</div>
+        <div class="project-title">CRM & Trade Platform — Full Stack + AI</div>
+        <p class="project-desc">A comprehensive Retail CRM and Customer Engagement platform built from scratch — featuring an integrated <strong style="color:var(--teal)">AI Chatbot Assistant</strong> that understands real CRM data (leads, contacts, activities, sales insights), with domain-scoped responses, OTP rate limiting, DB trigger audit trails, 3-tier role hierarchy, JWT + OTP + OAuth2 security, lead lifecycle, cart/billing/invoice system, Lucky Draw, FAQ, insights dashboard, and PWA features.</p>
+        <div class="project-stack">
+          <span class="stack-tag ai">Claude API (AI Chatbot)</span>
+          <span class="stack-tag">Spring Boot</span><span class="stack-tag">Thymeleaf</span>
+          <span class="stack-tag">Spring Security</span><span class="stack-tag">JWT</span>
+          <span class="stack-tag">OAuth2</span><span class="stack-tag">MySQL</span>
+          <span class="stack-tag">Apache POI</span><span class="stack-tag">ITextRenderer</span>
+          <span class="stack-tag">Bootstrap</span><span class="stack-tag">Tailwind CSS</span>
+          <span class="stack-tag">AJAX / jQuery</span><span class="stack-tag">Geo Code API</span>
+          <span class="stack-tag">Contact Picker API</span><span class="stack-tag">Web OTP API</span>
         </div>
-<!-- --------------------------------------------------- -->
-        <div class = "header-text">
-
-            <h1>Hi, I'am <span class ="sp">Arjun</span> From Bengaluru</h1>
-
+        <div class="project-links">
+          <a href="https://github.com/arjunrathod1996/Clientrade" class="project-link"><i class="fa-brands fa-github"></i> GitHub</a>
         </div>
-<!-- --------------------------------------------------- -->
+        <div class="note-box">📌 Not deployed in production · Repository contains architecture explanation, full feature walkthrough, and screenshots demonstrating all functionality end-to-end.</div>
+      </div>
+      <div>
+        <ul class="feature-list">
+          <li><strong style="color:var(--teal)">AI Chatbot Assistant</strong> — Claude API integration; domain-scoped to CRM data only (leads, contacts, activities, follow-ups, sales insights); rejects out-of-scope queries</li>
+          <li><strong>OTP Rate Limiting</strong> — Too-Many-Requests protection (429); enforces 60s cooldown on OTP generation to prevent abuse</li>
+          <li><strong>DB Trigger Audit Trail</strong> — MySQL triggers log every INSERT/UPDATE/DELETE to audit_log table with old_data, new_data, changed_by, and operation_type</li>
+          <li><strong>Role-Based Data Isolation</strong> — Same role, different user = completely different data view; enforced at query level</li>
+          <li><strong>JWT + OTP + OAuth2</strong> — Phone OTP login, JWT cookie auth, Google/GitHub OAuth2 with custom success handler</li>
+          <li><strong>Lead CRM</strong> — Source, category, priority, status (Open→Closure), multi-contact, follow-up scheduling, staff assignment</li>
+          <li><strong>Cart & Billing</strong> — PENDING→COMPLETED→CANCELED lifecycle, quantity delta, invoice PDF download</li>
+          <li><strong>Insights Dashboard</strong> — 6-month bar graph, top customers, status counts, date-time filter, drill-down to bill summary</li>
+          <li><strong>Excel & PDF Export</strong> — Full/filtered data to .xlsx, invoice PDF via ITextRenderer</li>
+          <li><strong>Raffle / Lucky Draw</strong> — Ticket generation, pot management, randomised winner, real-time spin UI</li>
+          <li><strong>FAQ System</strong> — Topics + Q&A with text/image/video support, reorderable, search, auto-open popular topic</li>
+          <li><strong>Feature Toggle</strong> — Admin enables/disables features (Appointment, Submit Bill) per business</li>
+          <li><strong>Language Translation</strong> — Spring LocaleResolver, Kannada/Hindi/English/Spanish</li>
+          <li><strong>Geo Code API</strong> — Location-based merchant store discovery for customers</li>
+        </ul>
+      </div>
     </div>
-<!-- --------------------------------------------------- -->
 
-<!-- --------------------------------------------------------------------------------------------------------------------------------- -->
-<!-- About -->
-<!-- --------------------------------------------------- -->
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <!-- <div class="about-col-1">
-                    <img src="images/phoneba.png">
-                </div> -->
-                <div class="about-col-12">
-                    <h3 style="font-size: 40px;" class = "sub-title" >About Me</h3>
-        
-                    <p style="font-size: 18px;">Enthusiastic and detail-oriented full-stack developer with expertise in Java and Full Stack Development. Demonstrated proficiency in creating dynamic web applications and implementing key features. Committed to continuous learning and growth.</p>
-                    <br>
-                    <h3 style="font-size: 40px;" class = "sub-title" id="exp" >Professional Experience</h3>
-                    <br>
-                    <div id="sli">
-                        <span style="color: white;" id="sling">Slingloft Technologies Pvt Ltd </span>
-                        <span style="color: white;margin-left: 200px;" id="sling1"> | Karnataka, India </span>
-                        <span style="color: white;margin-left: 200px;" id="sling2"> | Nov 2022 - Present </span>
-                    </div>
-                    <br> 
-                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Developed and maintained Java-based web applications using the Spring framework enhancing system performance and functionality.</p>
-                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Implement RESTful APIs, improving data exchange and application scalability.</p>
-                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Implemented best coding practices to ensure a high-quality codebase.</p>
-                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Developed java applications and integrated them with MySQL databases, enhancing data processing and management.</p>
-                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Implement user-friendly interfaces, improving the overall user experience.</p>
-                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Utilized various frameworks and technologies, including Spring and Hibernate , enhance application performance.</p>
-                    <p style="font-size: 18px;"><i class="fa-solid fa-angles-right"></i> Efficiently managed project workflows, consistently delivering high-quality work within stipulated timeframes, showcasing strong time management and prioritization skills.</p>
-                    <div class="tab-titles">
-                        <p class = "tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class = "tab-links" onclick="opentab('education')">Education</p>
-                        <p class = "tab-links" onclick="opentab('education-project')">Education Project</p>
-                        <!-- <p class = "tab-links" onclick="opentab('personal-project')">Personal Project</p> -->
-                    </div>
+    <div class="project-card">
+      <div class="project-eyebrow">Full Stack</div>
+      <div class="project-title">Employee CRUD — Spring Boot + React</div>
+      <p class="project-desc">Full-stack employee management app with Spring Boot REST API backend and React frontend. Clean separation between API layer and UI with Bootstrap styling.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Spring Boot</span><span class="stack-tag">React.js</span>
+        <span class="stack-tag">REST API</span><span class="stack-tag">MySQL</span><span class="stack-tag">Bootstrap</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/arjunrathod1996/springboot-react-crud-application" class="project-link"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
+    </div>
 
-                    
-                    <div class = "tab-content active-tab" id = "skills">
-                        <ul >
-                            <li style="font-family: cursive;"><i class="fa-brands fa-java"></i> Java</li>
-                            <li style="font-family: cursive;"><i class="fa-solid fa-leaf"></i> Spring Boot, Hibernate and Thymeleaf</li>
-                            <li style="font-family: cursive;"><i class="fa-brands fa-square-js"></i> JavaScript/JQuery/AJAX/React.js</li>
-                            <li style="font-family: cursive;"><i class="fa-brands fa-html5"></i> HTML5</li>
-                            <li style="font-family: cursive;"><i class="fa-brands fa-css3"></i> CSS3</li>
-                            <li style="font-family: cursive;"><i class="fa-solid fa-database"></i> MySQL/Oracle</li>
-                            <li style="font-family: cursive;"><i class="fa-brands fa-python"></i> Python</li>
-                            <li style="font-family: cursive;"><i class="fa-solid fa-file-excel"></i> Excel</li>
-                            <li style="font-family: cursive;"><i class="fa-brands fa-react"></i> React</li>
-                        </ul>
-                    </div>
+    <div class="project-card">
+      <div class="project-eyebrow">Backend</div>
+      <div class="project-title">Employee Management — Spring MVC + Hibernate</div>
+      <p class="project-desc">Employee management system using Spring MVC and Hibernate ORM with Bootstrap UI. Full CRUD with proper MVC separation and Hibernate session management.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Spring MVC</span><span class="stack-tag">Hibernate</span>
+        <span class="stack-tag">MySQL</span><span class="stack-tag">Bootstrap</span><span class="stack-tag">JSP</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/arjunrathod1996/Employee-System-CRUD-springmvc-and-hibernate" class="project-link"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
 
+<div class="full-divider"></div>
 
-                    <div class ="tab-content" id="education">
-                        <ul>
-                            <li  style="font-family: cursive;"><span>2018 - 2020</span><br>M.Tech in Structural Engineering at Visvesvaraya Technological University - Belagavi, India (2020)</li>
-                            <li  style="font-family: cursive;"><span>2014 - 2018</span><br>B.Tech in Civil Engineering at Ramaiah University Of Applied Sciences - Bangalore, India (2018)</li>
-                            <li  style="font-family: cursive;"><span>2012 - 2014</span><br> PUC at Shree Guru Nagalingeshwara - Gulbaraga, India (2014)</li>
-                        </ul>
-                    </div>
+<!-- SCREENSHOTS SECTION -->
+<div class="showcase-section" id="screenshots">
+  <div class="showcase-inner">
+    <div class="section-label">// 05 live screenshots</div>
+    <h2 class="section-title" style="margin-bottom:32px">See It <span>In Action</span></h2>
 
+    <div class="showcase-tabs">
+      <button class="showcase-tab ai-tab active" onclick="showPanel('ai')">🤖 AI Chatbot</button>
+      <button class="showcase-tab" onclick="showPanel('security')">🔒 Security & Auth</button>
+      <button class="showcase-tab" onclick="showPanel('leads')">🎯 Lead Management</button>
+      <button class="showcase-tab" onclick="showPanel('audit')">📋 Audit Trail</button>
+      <button class="showcase-tab" onclick="showPanel('healthCheck')">🩺 Health Check</button>
+    </div>
 
-                    <div class = "tab-content" id="education-project">
-                        <ul>
-                            <li><span>2020</span><br></li><div style="font-family: cursive; font-size: 18px">Comparative Data Analysis and Experimental Study on Modes of Fracture of Plain and RC Beams
-                                Determine the Stress Intensity Factor, Fracture Energy, various capacities in each dif erent position of Notch Beams.</div>
-                            <li><span>2018</span><br></li><div style="font-family: cursive;font-size: 18px;">Application of Artificial Intelligence in Pile Foundation
-                                Analyzed and created a model using MATLAB to determine the Load Bearing Capacity of Soil of Pile Foundation</div>
-                        </ul>
-                    </div>
-
-
-
-                    <!-- <div class = "tab-content" id="personal-project">
-                        <ul>
-                            <li><span>2022</span><br>Studied the growth of Xiaomi corporation in the Indian market by doing exploratory data   analysis using Excel, found a
-                                correlation between dependent variables & independent variables and then built & validated the model to Predict prices</li>
-                            <li><span>2022</span><br>Performed EDA, analyzed and explored data, found a correlation between dependent variables & independent variables<br>
-                            Built a predictive model using linear regression method to predict the price of the Ipad depending on the four
-                            important features which are screen size, storage, connectivity and generation</li>
-                        </ul>
-                    </div> -->
-                </div>
-            </div>
+    <!-- AI PANEL -->
+    <div class="screenshot-panel active" id="panel-ai">
+      <div class="ai-banner">
+        <div>
+          <div class="ai-banner-title">CRM-Aware <span>AI Chatbot</span><br>Built with Claude API</div>
+          <p class="ai-banner-desc">Not just a generic chatbot — this AI assistant is fully integrated with your live CRM data. It understands leads, contacts, activities, and sales insights in real time. Ask it anything about your business data. Try to ask it about Java or React — it will politely refuse and redirect you to CRM topics only.</p>
         </div>
-    </div>   
-        <!-- About -->
-<!-- --------------------------------------------------- -->
-
-
-<!-- Portfolio -->
-
-<div id = "portfolio">
-    <div class = "container">
-            <h1 class = "sub-title">Personal Project From Scratch</h1>
-            <div class="work-list">
-                <div class="work">
-                    <img src="work-1.png">
-                    <div class="layer">
-                        <h3>CRM And Trade</h3>
-                        <p>•	Developed a real-time project from scratch using Spring Boot, Thymeleaf, Bootstrap, and Tailwind CSS (Flowbite), integrating AJAX, jQuery, and AJAX data tables, MySql. Implemented Spring Security and JWT authentication, with phone number-based OTP verification. Utilized role-based access control for users, incorporating CRM and trade functionalities. Integrated Geo Code API and Contact Picker API for location-based services and contact management. Users can order items categorized by type and location, leave reviews, and refer contacts. The dashboard provides insights, graphical overviews, and access to the FAQ section. Lead activity tracking and follow-up functionality are included. For a detailed explanation and screenshots,</p>
-                        <a href="https://github.com/arjunrathod1996/Clientrade"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="work">
-                    <img src="work-2.png">
-                    <div class="layer">
-                        <h3>Employee CRUD System</h3>
-                        <p>This repository contains a full-stack CRUD (Create, Read, Update, Delete) application built with Spring Boot on the backend and React on the frontend. The application allows users to perform CRUD operations on employee records, including adding new employees, viewing existing records, updating employee details, and deleting employees.</p>
-                        <a href="https://github.com/arjunrathod1996/springboot-react-crud-application"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-            </div>
-    </div>
-</div>
-
-
-<div id = "portfolio">
-    <div class = "container">
-            <h1 class = "sub-title_">Projects/Features</h1>
-            <div class="work-list">
-                <div class="work">
-                    <span style="color: white; font-size: 25px; text-decoration: underline;">Feature: Lucky Draw / Raffle Tickets : </span>
-                    <br><br>
-                    <div>
-                        Implemented a dynamic Lucky Draw (Raffle) system where customers earn Raffle Tickets based on their performance(Transactions), with a chance to win exciting prizes through a Lucky Draw.
-                    </div>
-                    <br>
-                  
-                    
-                  
-                    <div>
-                        <span style="color: white; font-size: 20px; text-decoration: underline;">Key Achievements:</span>
-                        
-                        <div style="margin-top: 10px;">
-                            <span style="color: white; font-size: 20px;">Pot Creation:</span>
-                            <div style="margin-top: 10px;">
-                                Created 'Pots', which are groups of tickets against which Lucky Draws are conducted.Utilized a dedicated database table 'raffle_pot' to manage Pot details including Pot Name, Ticket Prefix, and Ticket Value based on customer transactions.
-                            </div>
-
-                           
-
-                        </div>
-
-                        <div style="margin-top: 10px;">
-                            <span style="color: white; font-size: 20px;">Ticket Generation:</span>
-                            <div style="margin-top: 10px;">
-                               <span style="color: white;">Developed a system to dynamically generate tickets based on transaction records from an external system.</span>
-                               <br>
-                               <span style="color: white;">Formatted each ticket with a unique structure: Prefix-Date-Seq, ensuring a continuous sequence for each Pot.                            </span>
-                            </div>
-
-                          
-
-                        </div>
-
-                        
-                        <div style="margin-top: 10px;">
-                            <span style="color: white; font-size: 20px;">Prize Management:                            </span>
-                            <div style="margin-top: 10px;">
-                               <span style="color: white;">Implemented a system to create and manage prizes with defined positions (1st, 2nd, etc.) and associated gifts.</span>
-                               <br>
-                               <span style="color: white;">Utilized a database table 'raffle_prize' to store prize details including business, position, count, and gift text.                            </span>
-                            </div>
-
-                           
-
-                        </div>
-
-                        <div style="margin-top: 10px;">
-                            <span style="color: white; font-size: 20px;">Raffle Spin and Winner Selection:
-                            </span>
-                            <div style="margin-top: 10px;">
-                               <span style="color: white;">Enabled multiple runs of the Lucky Draw, generating one winner in each run. </span>
-                               <br>
-                               <span style="color: white;">Implemented a spinning process that selects eligible tickets and determines winners based on randomized ticket selection.                            </span>
-                            </div>
-                            
-                            
-                            
-
-                        </div>
-
-                        <div style="margin-top: 10px;">
-                            <span style="color: white; font-size: 20px;">Raffle Run/Lucky Draw Page:</span>
-                            <div style="margin-top: 10px;">
-                               <span style="color: white;">Designed a separate interactive page to display the progress of the Raffle Run with real-time updates on winners and prize details.</span>
-                            </div>
-                        </div>
-
-                      
-
-                    </div>
-                </div> 
-            </div>
-
-            <br>
-
-            <div class="work">
-                <span style="color: white; font-size: 25px; text-decoration: underline;">Feature: Lead Activity :  </span>
-                <br><br>
-                <div>
-                    I designed and implemented a dynamic lead data management system to ensure the accuracy and timeliness of lead information. By integrating  contact sorting mechanisms and enabling seamless lead assignments, Additionally, I proficiently managed task tracking, prioritization, and real-time update.
-                </div>
-                <br>
-
-                <div>
-                    <span style="color: white; font-size: 20px; text-decoration: underline;">Key Achievements:</span>
-
-                    <div style="margin-top: 10px;">
-                        <span style="color: white; font-size: 20px;">Dynamic Lead Data Management:</span>
-                        <div style="margin-top: 10px;">
-                            Pioneered the creation and updating of leads, ensuring accuracy and timeliness in lead data management, significantly streamlining operations.
-                        </div>
-                        <div style="margin-top: 10px;">
-                            We Can Create Lead and We Can Set Source For Example (Store Visit,Enquiry,Campaign,linkedin). and we set Categorty also For Example (Shoes,Colths,Elecrical Things etc) and set as Priority according our priority For Example (Low,Medium,High and Crictical).
-                        </div>
-
-                        <div style="margin-top: 10px;">
-                           While Update we can set State according out status For Example (Open,Inprocess,Proposal,Closure,Invalid and Not Intersted). and We can Set Net Follow-up Date Also.
-                        </div>
-
-                       
-
-                    </div>
-
-
-                    <div style="margin-top: 10px;">
-                        <span style="color: white; font-size: 20px;">Highlighted Technical Contributions:                        </span>
-                        <br>
-                        <span style="color: white; font-size: 20px;">Lead Contact Management:                        </span>
-
-                        <div style="margin-top: 10px;">
-                            Developed and refined functions for creating and updating lead contacts, pivotal to maintaining a comprehensive database of contacts essential for smooth lead interactions.
-                        </div>
-
-                        <div style="margin-top: 10px;">
-                           We can set or create Contact Details For Leads. We can Add multiple contact From Same Lead With Respect to Designation,Location etc.
-                        </div>
-
-                      
-
-                    </div>
-
-
-                    <div style="margin-top: 10px;">
-                        <br>
-                        <span style="color: white; font-size: 20px;">Activity Tracking Enhancement:  </span>
-
-                        <div style="margin-top: 10px;">
-                            Elevated task tracing and activity tracking by implementing functions to add or update task-related activities, providing a clear overview of lead activities.
-                        </div>
-
-                        <div style="margin-top: 10px;">
-                           We can set or create Contact Details For Leads. We can Add multiple contact From Same Lead With Respect to Designation,Location etc.
-                        </div>
-
-                        <div style="margin-top: 10px;">
-                           We Can Track Contact With respect to Leads and We Can set type like How we connect with them For Example (Call,Email and Meeting). and We can set Status also According to discuss with Contact Person For Example (Open,complete and Cancel).
-                         </div>
-
-                    </div>
-
-
-                    <div style="margin-top: 10px;">
-                        <br>
-                        <span style="color: white; font-size: 20px;">Real-time Updates and Insights:                        </span>
-
-                        <div style="margin-top: 10px;">
-                            Elevated task tracing and activity tracking by implementing functions to add or update task-related activities, providing a clear overview of lead activities.
-                        </div>
-
-                        <div style="margin-top: 10px;">
-                            Implemented features for real-time updates on lead activities and status changes, ensuring the team has the latest and most pertinent information at their fingertips.
-                        </div>
-
-                        <div style="margin-top: 10px;">
-                            Proficient in task management and activity tracking, ensuring each task is well-organized and completed within the stipulated timeline.
-
-                         </div>
-
-                        
-                    </div>
-
-                </div>
-
-
-            </div>
-
-            <br>
-
-            <div class="work">
-                <span style="color: white; font-size: 25px; text-decoration: underline;">Feature: Activity Program Insight :                </span>
-                <br><br>
-                <div>
-                    Developed a comprehensive Activity Program Insight feature to provide an in-depth understanding of program activities, rewards, and customer engagement.
-                <br><br>
-
-               
-                
-                <span style="color: white; font-size: 20px;">Monthly Activity Graph:</span>
-                <div>
-                    Implemented a graphical representation showcasing activity count and reward distribution on a month-to-month basis.
-
-                   
-
-                </div>
-
-                <span style="color: white; font-size: 20px;">Displayed a concise overview of program statistics :</span>
-
-                <div>
-                    Number of program instances, Number of rewards, Number of customers and beneficiaries Total Data1 and Data2.
-
-                    
-                </div>
-
-                <span style="color: white; font-size: 20px;">Top Customers:</span>
-
-                <span style="color: white; font-size: 20px;">Enabled effective customer performance analysis by offering:                </span>
-
-                <div>
-                    Date-time filter for precise filtering, Customer names, Number of activities undertaken, Earned rewards.
-
-                   
-                </div>
-
-
-                <span style="color: white; font-size: 20px;">Top Beneficiaries                    : </span>
-
-                <span style="color: white; font-size: 20px;">Highlighted key beneficiaries, showcasing:                </span>
-
-                <div>
-                    Date-time filter for focused analysis, Customer names, Count and value of rewards allocated to each beneficiary.                
-
-                  
-                </div>
-
-                <span style="color: white; font-size: 20px;">Program Details:                </span>
-
-                <span style="color: white; font-size: 20px;">Presented detailed insights into each program, providing:                </span>
-
-                <div>
-                    Program name, Count and value of rewards associated with each program.
-
-
-                   
-
-                </div>
-
-                <div>
-                    Implemented relevant URL links, enhancing user experience and accessibility by allowing easy access to counts and redirects to activity instance pages.
-                    Implemented Insight Other Features Also.
-
-                </div>
-
-            </div>
-
-            <br>
-            
-            <div class="work">
-                <span style="color: white; font-size: 25px; text-decoration: underline;">Feature: Language Translation Integration :                 </span>
-                <br><br>
-                <div>
-                    Implemented a language translation feature to facilitate the dynamic conversion of text from English to other languages like Hindi, Kannada, and Spanish. The system is designed to provide a seamless 
-                    user experience by allowing users to select their preferred language and view the application's content in their chosen language.
-
-                <br><br>
-
-                <span style="color: white; font-size: 20px;">Key Implementations:                </span>
-
-                <div>
-                    Configured a message source to handle language-specific message properties.
-                Utilized Spring's LocaleResolver to manage user locale settings for language selection.
-                Developed an intuitive interface allowing users to select their desired language.
-                Integrated with a translation API to fetch real-time translations for improved multilingual functionality.
-
-                </div>
-                <br>
-
-                <span style="color: white; font-size: 20px;">Technologies Used:                </span>
-
-                <div>
-                    Java Spring Boot: Configured the application for language translation support.
-                    Thymeleaf: Utilized for dynamic rendering and interaction with the user interface.
-                    HTML, CSS, Bootstrap: Designed the user interface for language selection.
-                    JavaScript, AJAX: Integrated to enable seamless language change without page reloads.
-
-                </div>
-
-                
-            </div>
-
-            <br>
-
-            <div class="work">
-                <span style="color: white; font-size: 25px; text-decoration: underline;">PWA APP Enhancements : </span>
-                <br><br>
-                <span style="color: white; font-size: 20px;">Feature: Read Login OTP from SMS (Web OTP API): </span>
-
-                <div>
-                    Implemented functionality to read One-Time Password (OTP) from SMS using the Web OTP API.
-                    Supported both manual input and auto-detection of OTP from SMS.
-
-                </div>
-
-                
-                <span style="color: white; font-size: 20px;">Feature: Phone Contact Picker for Referrals  </span>
-                <br>
-                <span style="color: white; font-size: 16px;">Enhanced the application to include a phone contact picker for easier referral invitations.</span>
-
-                <br><br>
-
-                <span style="color: white; font-size: 20px;">Implemented the following:                </span>
-
-                <div>
-                    Displayed a contact picker within the referral functionality.<br>
-                    Enabled users to select contacts for sending referral invites, capturing essential details such as:
-                    First name , Last name , Phone number, Email <br>
-                    Pick multiple Contacts (max 10) to send Invite. And after Successful Show the count of contacts selected and contact Name as Tags/Libs <br>
-                    And here before Refer it will skip the existing customer and refer to a new customer or contact. <br>
-                    Option to Unselect contact before submitting
-
-                </div>
-
-                <br>
-                
-                <div class="work">
-                    
-                    <span style="color: white; font-size: 25px; text-decoration: underline;">Feature: FAQ Section: </span>
-    
-                    <div>
-                        Enhanced FAQ section with Spring MVC backend logic, organizing topics and Q&A pairs. Implemented a dynamic Thymeleaf-based frontend with collapsible elements, supporting multimedia content. Applied responsive styling and interactive JavaScript for a seamless user experience. Key technologies: Spring MVC, Java, Thymeleaf, HTML, CSS, JavaScript, jQuery. Improved content organization and prioritization, ensuring multimedia integration within FAQs.
-                    </div>
-    
-                    
-                    
-                </div>
-              
-
-
-            </div>
-
-    </div>
-</div>
-
-
-<div id = "portfolio">
-    <div class = "container">
-            <h1 class = "sub-title">Front-End Web development projects</h1>
-            <div class="work-list">
-                <div class="work">
-                    <img src="work-3.png">
-                    <div class="layer">
-                        <h3>Ecommerce Website</h3>
-                        <p>Responsive E-Commerce website by using HTML and CSS</p>
-                        <a href="https://arjunrathod1996.github.io/Ecommerce-website.github.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="work">
-                    <img src="work-1.png">
-                    <div class="layer">
-                        <h3>Netflix Website Clone</h3>
-                        <p>Responsive Netflix clone website By using HTML and CSS</p>
-                        <a href="https://arjunrathod1996.github.io/Netflix-clone-webdesign.github.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="work">
-                    <img src="work-2.png">
-                    <div class="layer">
-                        <h3>Meta Website Clone</h3>
-                        <p>Responsive Meta clone website By using HTML and CSS with Dark Theme</p>
-                        <a href="https://arjunrathod1996.github.io/Facebook-Clone-Website.github.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div> 
-
-
-                <div class="work">
-                    <img src="work-3.png">
-                    <div class="layer">
-                        <h3>Restaurant Website</h3>
-                        <p>Responsive Restaurant website By using HTML and CSS with Animation</p>
-                        <a href="https://arjunrathod1996.github.io/Restaurant-website.github.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div> 
-            </div>
-    </div>
-</div>
-
-
-
-<div id = "portfolio">
-    <div class = "container">
-            <h1 class = "sub-title">Front-End and Back-End Projects</h1>
-            <div class="work-list">
-                <div class="work">
-                    <img src="work-1.png">
-                    <div class="layer">
-                        <h3>Employee Management System</h3>
-                        <p>Employee Management System Project By using SpringMVC, Hibernate and BootStrap (Spring Tool Suite)</p>
-                        <a href="https://github.com/arjunrathod1996/Employee-System-CRUD-springmvc-and-hibernate"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="work">
-                    <img src="work-2.png">
-                    <div class="layer">
-                        <h3>User Login Authentication Module Java Web Project </h3>
-                        <p>Login and Logout Authentication Module by using Servlet, Jsp, MySQL and after logout clear all cache from the browser (Java Eclipse)</p>
-                        <a href="https://github.com/arjunrathod1996/Login-Logout-Servlet-Jsp-Mysql"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="work">
-                    <img src="work-3.png">
-                    <div class="layer">
-                        <h3>TODO Web Application Project</h3>
-                        <p>ToDo Web Application Project by using Servlet, Jsp, Jstl , MySQL and BootStrap (Java Eclipse) </p>
-                        <a href="https://arjunrathod1996.github.io/Facebook-Clone-Website.github.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div> 
-            </div>
-            <a href="#" class = "btn">See more</a>
-    </div>
-</div>
-
-
-
-<!-- Contact -->
-
-<div id="contact">
-    <div class="container">
-        <div class = "row">
-            <div class="contact-left">
-                <h1 class = "sub-title">Contact Me</h1>
-                <p><i class="fa-solid fa-paper-plane"></i> arjundargurathod@gmail.com</p>
-                <p><i class="fa-solid fa-square-phone"></i> 8217308285</p>
-                <div class = "social-icons">
-                    <a href="https://github.com/arjunrathod1996"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/arjundr/"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
-
-                <a href="Arjun Resume.pdf" download="" class="btn btn2">Download CV</a>
-
-
-            </div>
-
-            <div class="contact-right">
-                <form name = "submit-to-google-sheet">
-                    <input type = "text" name = "Name" placeholder="Your Name" required>
-                    <input type="email" name = "Email" placeholder="Your Email" required>
-                    <textarea name = "Message" rows="6" placeholder="Your Message"></textarea>
-                    <button type="submit" class ="btn btn2">Submit</button>
-                </form>
-                <span id = "msg"></span>
-            </div>
+        <div>
+          <ul class="ai-feature-list">
+            <li><strong>Domain Scoped</strong> — Restricted to CRM-only queries (Leads, Contacts, Activities, Follow-ups, Sales insights). Out-of-scope questions like "What is Java?" are rejected.</li>
+            <li><strong>Context-Aware</strong> — Knows your actual data: lead names, priorities, contact details, phone numbers, emails, designations.</li>
+            <li><strong>Before Login</strong> — General AI assistant (AI Robo) available on the homepage for pre-login visitors.</li>
+            <li><strong>After Login</strong> — CRM AI Assistant activates with access to your role-specific data.</li>
+            <li><strong>Rate Limited</strong> — OTP and AI endpoints are protected from abuse via 429 Too Many Requests enforcement.</li>
+          </ul>
         </div>
+      </div>
+      <div class="screenshot-grid">
+        <div class="screenshot-card ai-card">
+          <img src="Before login.JPG" class="screenshot-img" alt="Before Login AI">
+          <div class="screenshot-caption">
+            <div class="ai-badge-inline">Pre-Login · AI Robo Assistant</div>
+            <h4>Homepage AI Robo Assistant</h4>
+            <p>Before logging in, visitors can interact with a general AI Robo assistant on the CRM homepage. Answers general questions like "What is Java?" — a different personality than the CRM AI.</p>
+          </div>
+        </div>
+        <div class="screenshot-card ai-card">
+          <img src="After login leads.JPG" class="screenshot-img" alt="CRM AI Greeting">
+          <div class="screenshot-caption">
+            <div class="ai-badge-inline">Post-Login · CRM AI Assistant</div>
+            <h4>CRM AI Greeting — Domain-Scoped</h4>
+            <p>After login, the CRM AI Assistant activates. It greets the user and immediately lists its scope: Leads, Contacts, Activities, Follow-ups, Sales insights. Out-of-domain queries like "What is React?" return: "I can assist only with CRM-related queries."</p>
+          </div>
+        </div>
+        <div class="screenshot-card ai-card">
+          <img src="out scope domain.JPG" class="screenshot-img" alt="Out of scope">
+          <div class="screenshot-caption">
+            <div class="ai-badge-inline">Domain Enforcement</div>
+            <h4>Out-of-Scope Query Rejection</h4>
+            <p>When a user asks "What is Java?" or "What is React?", the AI correctly responds: "I can assist only with CRM-related queries. Please ask about: Leads, Contacts, Activities, Follow-ups, Sales insights." Keeps the assistant focused and professional.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-<div class="copyright">
-    <p> copyright <i class="fa-solid fa-copyright"></i> Arjun. <i class="fa-solid fa-heart"></i></p>
+    <!-- SECURITY PANEL -->
+    <div class="screenshot-panel" id="panel-security">
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <img src="Too Many OTP Requested.JPG" class="screenshot-img" alt="OTP Rate Limiting">
+          <div class="screenshot-caption">
+            <div class="security-badge-inline">Rate Limiting · 429 Too Many Requests</div>
+            <h4>OTP Rate Limiting — Abuse Prevention</h4>
+            <p>When OTP is requested too frequently, the API returns HTTP 429 with the message: "Too many requests. Please wait 60 seconds before trying again." Implemented at the Spring Security filter level — protects against OTP bombing and brute-force attacks.</p>
+          </div>
+        </div>
+        <div class="screenshot-card">
+          <img src="another user same role without data.JPG" class="screenshot-img" alt="Role Data Isolation">
+          <div class="screenshot-caption">
+            <div class="security-badge-inline">Role-Based Data Isolation</div>
+            <h4>Same Role, Different Data — Zero Cross-Contamination</h4>
+            <p>A different user logged in with the same Merchant Admin role sees "No data available in table" and "No relevant CRM data found" because the data belongs to a different user scope. Data isolation is enforced at the query level — not just UI-level hiding.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADS PANEL -->
+    <div class="screenshot-panel" id="panel-leads">
+      <div class="screenshot-grid">
+        <div class="screenshot-card ai-card">
+          <img src="After login leads2.JPG" class="screenshot-img" alt="Leads with AI">
+          <div class="screenshot-caption">
+            <div class="ai-badge-inline">AI + Leads Module</div>
+            <h4>Lead List with CRM AI — Total Count & Names</h4>
+            <p>The AI correctly answers "Total leads?" → "Total leads: 2. Entity types: LEAD." When asked "give me leads name" → Lists "QR Code & UPI Payment Setup" and "New POS System Upgrade" with their IDs. All pulled from live CRM data.</p>
+          </div>
+        </div>
+        <div class="screenshot-card ai-card">
+          <img src="After login leads.JPG" class="screenshot-img" alt="AI Priority Query">
+          <div class="screenshot-caption">
+            <div class="ai-badge-inline">AI Context Awareness</div>
+            <h4>Priority Query — AI Knows Your Lead Status</h4>
+            <p>User asks: "QR Code & UPI Payment Setup — what is priority?" AI responds: "Priority for QR Code & UPI Payment Setup is Critical. Entity type: LEAD." Real-time data from the database, contextually understood.</p>
+          </div>
+        </div>
+        <div class="screenshot-card ai-card">
+          <img src="After login leads3.JPG" class="screenshot-img" alt="Contact Count">
+          <div class="screenshot-caption">
+            <div class="ai-badge-inline">AI · Contact Intelligence</div>
+            <h4>Contact Count & Lead Mapping</h4>
+            <p>AI answers "total contacts?" → "Total contacts: 4. Entity type: CONTACT." When asked to map contacts to their leads — it cross-references Lead IDs and Contact IDs intelligently, demonstrating true CRM-data awareness.</p>
+          </div>
+        </div>
+        <div class="screenshot-card ai-card">
+          <img src="After login leads4.JPG" class="screenshot-img" alt="AI Contact Details">
+          <div class="screenshot-caption">
+            <div class="ai-badge-inline">AI · Contact Details</div>
+            <h4>Phone Numbers, Emails & Designations</h4>
+            <p>Ask the AI for "contact name and phone numbers only" → Returns: Suman Rao (+91 98765 43215), Rajesh Kumar (+91 98765 43210), Priya Sharma (+91 98765 43211), Anil Mehta (+91 99999 88888). Add "and give name with designation and email" → returns full structured contact info.</p>
+          </div>
+        </div>
+        <div class="screenshot-card ai-card">
+          <img src="After login leads5.JPG" class="screenshot-img" alt="Contacts with email">
+          <div class="screenshot-caption">
+            <div class="ai-badge-inline">AI · Structured Output</div>
+            <h4>Full Contact Intelligence — Designations + Emails</h4>
+            <p>AI returns: Priya Sharma (Accounts Head, accounts@urbanthread.in), Rajesh Kumar (Store Manager, rajesh@urbanthread.in), Suman Rao (Billing Supervisor, suman.r@urbanthread.in). All pulled from live DB — the AI formats and presents it clearly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUDIT PANEL -->
+    <div class="screenshot-panel" id="panel-audit">
+      <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.25);border-radius:12px;padding:24px;margin-bottom:28px">
+        <div style="font-family:var(--mono);font-size:12px;color:var(--amber);margin-bottom:8px">// DB Trigger Audit Trail — How It Works</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.7">MySQL AFTER INSERT / AFTER UPDATE / AFTER DELETE triggers are defined on critical tables (user, lead, contact, activity, etc.). Every change is recorded in the <code style="color:var(--amber)">sec.audit_log</code> table with: <strong style="color:var(--text)">table_name</strong>, <strong style="color:var(--text)">operation_type</strong> (INSERT / UPDATE / DELETE), <strong style="color:var(--text)">row_id</strong>, <strong style="color:var(--text)">old_data</strong> (JSON), <strong style="color:var(--text)">new_data</strong> (JSON), and <strong style="color:var(--text)">changed_by</strong>. This provides full traceability — you can see exactly what changed, who changed it, and what the before/after values were.</p>
+      </div>
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <img src="Audit 1.JPG" class="screenshot-img" alt="Audit Log 1">
+          <div class="screenshot-caption">
+            <div class="audit-badge-inline">DB Trigger · Audit Log Record 1</div>
+            <h4>UPDATE Operation — Before & After Values</h4>
+            <p>Audit record shows: Table: <strong>user</strong> · Operation: <strong>UPDATE</strong> · Row ID: 6 · Old data: phone_number "8095075541" · New data: phone_number "8095075540" · Changed by: root@localhost. Full field-level change tracking stored as JSON.</p>
+          </div>
+        </div>
+        <div class="screenshot-card">
+          <img src="Audit 2.JPG" class="screenshot-img" alt="Audit Log 2">
+          <div class="screenshot-caption">
+            <div class="audit-badge-inline">DB Trigger · Audit Log Record 2</div>
+            <h4>Sequential Audit Trail — Full History</h4>
+            <p>Record 2/3 shows the reverse UPDATE: Old data: phone_number "8095075540" → New data: phone_number "8095075541". All 3 audit records for this row show a complete history of every state change — critical for compliance, debugging, and regulatory requirements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- HEALTH CHEK PANEL -->
+    <!-- HEALTH CHECK PANEL -->
+<div class="screenshot-panel" id="panel-healthCheck">
+  <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.25);border-radius:12px;padding:24px;margin-bottom:28px">
+    <div style="font-family:var(--mono);font-size:12px;color:#10b981;margin-bottom:8px">
+      // 🩺 Automated Application Health Monitoring
+    </div>
+
+    <p style="font-size:13px;color:var(--text2);line-height:1.7">
+      Built a fully automated <strong style="color:var(--text)">Spring Boot Health Monitoring System</strong>
+      using <code style="color:#10b981">@Scheduled</code> jobs to continuously verify
+      <strong style="color:var(--text)">Infrastructure</strong> (MySQL, Kafka, Redis, Groq AI, Ollama),
+      <strong style="color:var(--text)">Business Modules</strong> (Leads, Contacts, Activities),
+      and <strong style="color:var(--text)">UI Availability</strong> (/home, /login).
+      The system executes health checks automatically at
+      <strong style="color:var(--text)">10 AM, 1 PM, and 7 PM IST</strong>,
+      generates color-coded HTML reports, emails them to Gmail, tracks component response time,
+      provides manual REST endpoints for on-demand execution, and performs nightly cleanup of
+      reports older than 30 days to maintain database health.
+    </p>
+  </div>
+
+  <div class="screenshot-grid">
+
+    <div class="screenshot-card">
+      <img src="Healthcheck1.JPG" class="screenshot-img" alt="Health Check Dashboard">
+
+      <div class="screenshot-caption">
+        <div class="audit-badge-inline">
+          🩺 Health Check · Infrastructure & Business Status
+        </div>
+
+        <h4>Automated Multi-Layer Health Monitoring</h4>
+
+        <p>
+          Executes scheduled health checks across
+          <strong>Infrastructure</strong> (MySQL, Kafka, Redis, Groq AI, Ollama),
+          <strong>Business Modules</strong> (Leads, Contacts, Activities),
+          and <strong>UI Endpoints</strong>.
+          Each component is monitored with response time measurement and status reporting.
+        </p>
+      </div>
+    </div>
+
+    <div class="screenshot-card">
+      <img src="Healthcheck2.JPG" class="screenshot-img" alt="Health Report Email">
+
+      <div class="screenshot-caption">
+        <div class="audit-badge-inline">
+          📧 Health Check · Automated Email Report
+        </div>
+
+        <h4>Scheduled HTML Email Reporting</h4>
+
+        <p>
+          Generates color-coded HTML health reports and automatically emails them
+          using <strong>JavaMailSender</strong> at
+          <strong>10 AM, 1 PM, and 7 PM IST</strong>.
+          Manual REST endpoints support on-demand execution, while a nightly cleanup job
+          removes reports older than 30 days.
+        </p>
+      </div>
+    </div>
+
+  </div>
 </div>
+
+  </div>
 </div>
 
 
-<!-- Script -->
+
+<div class="full-divider"></div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-label">// 06 features shipped</div>
+  <h2 class="section-title">Production Features <span>Built</span></h2>
+
+  <!-- AI FEATURES -->
+  <div class="feat-section-label">
+    <span class="co-badge feat-ai">🤖 AI Integration · Clientrade</span>
+    Context-aware CRM chatbot
+  </div>
+  <div class="feature-grid" style="margin-bottom:40px">
+    <div class="feature-card ai-feat">
+      <div class="feature-card-icon">🤖</div>
+      <span class="feat-company feat-ai">AI</span>
+      <div class="feature-card-title">Claude API — CRM AI Chatbot</div>
+      <div class="feature-card-desc">Integrated Claude API as a CRM-aware AI assistant. Understands leads, contacts, activities, follow-ups, and sales insights from live DB data. Prompts engineered to be domain-scoped — rejects any non-CRM query with a helpful redirect.</div>
+    </div>
+    <div class="feature-card ai-feat">
+      <div class="feature-card-icon">🚫</div>
+      <span class="feat-company feat-ai">AI</span>
+      <div class="feature-card-title">Domain Scoping & Out-of-Scope Rejection</div>
+      <div class="feature-card-desc">AI is restricted to CRM topics only. Asks about Java, React, or general tech? Returns: "I can assist only with CRM-related queries. Please ask about: Leads, Contacts, Activities, Follow-ups, Sales insights." Clean, professional, focused.</div>
+    </div>
+    <div class="feature-card ai-feat">
+      <div class="feature-card-icon">🔢</div>
+      <span class="feat-company feat-ai">AI</span>
+      <div class="feature-card-title">Real-Time Data Intelligence</div>
+      <div class="feature-card-desc">AI answers questions like "total leads?", "give me lead names", "what is priority for X lead?", "give contact name and phone numbers" — all pulling from live CRM database in real time, returning accurate and structured responses.</div>
+    </div>
+    <div class="feature-card ai-feat">
+      <div class="feature-card-icon">🎭</div>
+      <span class="feat-company feat-ai">AI</span>
+      <div class="feature-card-title">Dual AI Personalities</div>
+      <div class="feature-card-desc">Before login: general "AI Robo Assistant" available on homepage (answers broad questions). After login: "CRM AI Assistant" activates with role-scoped data access and domain restrictions. Two distinct AI experiences for two distinct user states.</div>
+    </div>
+  </div>
+
+  <!-- SECURITY & AUDIT -->
+  <div class="feat-section-label">
+    <span class="co-badge feat-sg">🔒 Security & Audit · Clientrade</span>
+    Rate limiting, data isolation, audit trails
+  </div>
+  <div class="feature-grid" style="margin-bottom:40px">
+    <div class="feature-card sg-feat">
+      <div class="feature-card-icon">⏱️</div>
+      <span class="feat-company feat-sg">Security</span>
+      <div class="feature-card-title">OTP Rate Limiting — 429 Protection</div>
+      <div class="feature-card-desc">OTP generation endpoint is rate-limited — too many requests returns HTTP 429 "Too many requests. Please wait 60 seconds before trying again." Implemented via Spring filter to prevent OTP bombing, brute-force, and abuse at the auth layer.</div>
+    </div>
+    <div class="feature-card sg-feat">
+      <div class="feature-card-icon">🔐</div>
+      <span class="feat-company feat-sg">Security</span>
+      <div class="feature-card-title">Role-Based Data Isolation</div>
+      <div class="feature-card-desc">Same role, completely different user = zero data visibility. A Merchant Admin from company A sees nothing from company B. Enforced at the database query level — not UI-level filtering. Confirmed visually: "No data available in table" / "No relevant CRM data found."</div>
+    </div>
+    <div class="feature-card sg-feat">
+      <div class="feature-card-icon">📋</div>
+      <span class="feat-company feat-sg">Audit</span>
+      <div class="feature-card-title">DB Trigger Audit Trail</div>
+      <div class="feature-card-desc">MySQL AFTER triggers on critical tables write to audit_log: table_name, operation_type (INSERT/UPDATE/DELETE), row_id, old_data (JSON), new_data (JSON), changed_by. Every field-level change is tracked with full before/after values — zero application code required.</div>
+    </div>
+    <div class="feature-card sg-feat">
+      <div class="feature-card-icon">🔑</div>
+      <span class="feat-company feat-sg">Auth</span>
+      <div class="feature-card-title">JWT + OTP + OAuth2 Security</div>
+      <div class="feature-card-desc">JWTAuthFilter extends OncePerRequestFilter — extracts JWT from cookie, validates, sets SecurityContext. Phone OTP login (4-digit, DB-stored). OAuth2 via Google/GitHub with custom OAuthenticationSuccessHandler generating JWT on social login. Custom 401/404 pages.</div>
+    </div>
+  </div>
+
+  <!-- SOCIETE GENERALE -->
+  <div class="feat-section-label">
+    <span class="co-badge feat-sg">Societe Generale · 2024–Present</span>
+    Financial compliance & IAM
+  </div>
+  <div class="feature-grid" style="margin-bottom:40px">
+    <div class="feature-card sg-feat">
+      <div class="feature-card-icon">🚀</div>
+      <span class="feat-company feat-sg">SG</span>
+      <div class="feature-card-title">PostgreSQL Materialized Views</div>
+      <div class="feature-card-desc">End-to-end data system with materialized views — 5× faster search. Reusable React server-side tables reduced UI duplication by ~70% across compliance screens.</div>
+    </div>
+    <div class="feature-card sg-feat">
+      <div class="feature-card-icon">⏰</div>
+      <span class="feat-company feat-sg">SG</span>
+      <div class="feature-card-title">Cron Automation + Audit Trail</div>
+      <div class="feature-card-desc">Backend cron schedulers with full audit trail. Improved SLA compliance by ~40% and full traceability for financial and regulatory workflows.</div>
+    </div>
+    <div class="feature-card sg-feat">
+      <div class="feature-card-icon">📊</div>
+      <span class="feat-company feat-sg">SG</span>
+      <div class="feature-card-title">Excel Automation — Apache POI</div>
+      <div class="feature-card-desc">IAM and compliance Excel tools replacing manual spreadsheet processes. Reduced manual effort by ~80% for identity access management reporting.</div>
+    </div>
+    <div class="feature-card sg-feat">
+      <div class="feature-card-icon">🧪</div>
+      <span class="feat-company feat-sg">SG</span>
+      <div class="feature-card-title">MSW API Mocking</div>
+      <div class="feature-card-desc">Mock Service Worker for frontend development without backend dependency. Increased test coverage by ~65% — React components tested against realistic API shapes independently.</div>
+    </div>
+    <div class="feature-card sg-feat">
+      <div class="feature-card-icon">🌍</div>
+      <span class="feat-company feat-sg">SG</span>
+      <div class="feature-card-title">Internationalisation — react-intl</div>
+      <div class="feature-card-desc">Scalable i18n system with react-intl supporting 500+ translation strings. Improved global usability by ~50% across multiple regions and languages.</div>
+    </div>
+  </div>
+
+  <!-- SLINGLOFT -->
+  <div class="feat-section-label">
+    <span class="co-badge feat-sl">Slingloft Technologies · 2022–2024</span>
+    Enterprise CRM platform
+  </div>
+  <div class="feature-grid" style="margin-bottom:40px">
+    <div class="feature-card">
+      <div class="feature-card-icon">📄</div>
+      <span class="feat-company feat-sl">Slingloft</span>
+      <div class="feature-card-title">PDF Invoice + Excel Billing Export</div>
+      <div class="feature-card-desc">PDF: Thymeleaf template → ITextRenderer → bytes streamed via HttpServletResponse. Excel: Apache POI XSSFWorkbook, bold headers, format wrappers, paginated or full-dataset modes. Zero disk I/O.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">🎰</div>
+      <span class="feat-company feat-sl">Slingloft</span>
+      <div class="feature-card-title">Lucky Draw / Raffle System</div>
+      <div class="feature-card-desc">Dynamic raffle pots with Prefix-Date-Seq ticket generation. Prize management (position, count, gift). Randomised winner selection. Real-time interactive spin UI.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">📊</div>
+      <span class="feat-company feat-sl">Slingloft</span>
+      <div class="feature-card-title">Activity Program Insights</div>
+      <div class="feature-card-desc">Monthly activity graph with reward distribution. Program stats, Top Customers and Top Beneficiaries with date-time filter. All views role-scoped per merchant.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">📱</div>
+      <span class="feat-company feat-sl">Slingloft</span>
+      <div class="feature-card-title">PWA Enhancements</div>
+      <div class="feature-card-desc">Web OTP API auto-reads OTP from SMS. Contact Picker API for referral invites — max 10 contacts, tags display, skip existing customers, duplicate filter. Language translation via Spring LocaleResolver (EN/Hindi/Kannada/Spanish).</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">🎯</div>
+      <span class="feat-company feat-sl">Slingloft</span>
+      <div class="feature-card-title">Lead Activity Tracking</div>
+      <div class="feature-card-desc">Source, category, priority, importance flag. Status: Open → Inprocess → Proposal → Closure → Invalid. Activity types: Call, Email, Meeting. Multi-contact per lead with follow-up scheduling and staff assignment.</div>
+    </div>
+  </div>
+
+  <!-- CLIENTRADE FEATURES -->
+  <div class="feat-section-label">
+    <span class="co-badge feat-personal">Personal Project · Clientrade</span>
+    Full stack CRM & Trade platform
+  </div>
+  <div class="clientrade-grid">
+    <div class="cr-card ai-cr">
+      <div class="cr-card-icon">🤖</div>
+      <div class="cr-card-title" style="color:var(--teal)">AI Chatbot — Claude API</div>
+      <div class="cr-card-desc">CRM-aware AI assistant built with Claude API. Domain-scoped: answers only Leads, Contacts, Activities, Follow-ups, Sales insights queries. Rejects out-of-domain. Dual mode: general AI Robo pre-login, CRM AI post-login with role-filtered data.</div>
+    </div>
+    <div class="cr-card ai-cr">
+      <div class="cr-card-icon">⏱️</div>
+      <div class="cr-card-title" style="color:var(--teal)">OTP Rate Limiting</div>
+      <div class="cr-card-desc">429 Too Many Requests protection on OTP generation endpoint. Enforces 60-second cooldown between OTP requests. Prevents OTP bombing, brute-force attacks, and API abuse. Implemented via Spring Security filter chain.</div>
+    </div>
+    <div class="cr-card ai-cr">
+      <div class="cr-card-icon">📋</div>
+      <div class="cr-card-title" style="color:var(--teal)">DB Trigger Audit Trail</div>
+      <div class="cr-card-desc">MySQL triggers on critical tables log every change to audit_log: table_name, operation_type, row_id, old_data (JSON), new_data (JSON), changed_by. Provides complete field-level change history with zero application code — pure database-level tracking.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">🔐</div>
+      <div class="cr-card-title">JWT + OTP + OAuth2 Security</div>
+      <div class="cr-card-desc">JWTAuthFilter (OncePerRequestFilter) extracts JWT from cookie, validates, sets SecurityContext. Phone OTP login (4-digit). OAuth2 via Google/GitHub with custom handler generating JWT on social login. Custom 401/404 pages.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">👥</div>
+      <div class="cr-card-title">3-Tier Role Hierarchy</div>
+      <div class="cr-card-desc">Admin → Merchant Admin (category-based) → Merchant Staff (location-based). Example: Restaurant → Food Admin → Staff at Bansankari / BTM. Each tier has isolated data scope enforced at query level.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">🎯</div>
+      <div class="cr-card-title">Lead CRM — Full Lifecycle</div>
+      <div class="cr-card-desc">LeadMain with source, category, priority, importance flag. Multi-contact per lead (LeadContact). LeadActivity: Call/Email/Meeting with Open/Complete/Cancel status and follow-up dates. Admin assigns leads to staff.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">🛒</div>
+      <div class="cr-card-title">Cart, Billing & Invoice</div>
+      <div class="cr-card-desc">PENDING→COMPLETED→CANCELED lifecycle with quantity delta recalculation. PDF invoice via ITextRenderer, Excel billing export via Apache POI. Full purchase history tracking.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">📈</div>
+      <div class="cr-card-title">Insights Dashboard</div>
+      <div class="cr-card-desc">6-month bar graph of completed counts/amounts. Status breakdowns. Top customers by purchase count and spend. Date-wise search. Click-through from count to filtered bill summary page.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">🎰</div>
+      <div class="cr-card-title">Lucky Draw / Raffle</div>
+      <div class="cr-card-desc">Raffle pots with Prefix-Date-Seq ticket format. Prize management (position, count, gift text). Randomised spin engine. Real-time raffle run page with winner display.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">📞</div>
+      <div class="cr-card-title">Contact Picker Referrals</div>
+      <div class="cr-card-desc">Contact Picker API — select up to 10 contacts. Tags input display. Auto-filter: invalid numbers, duplicates, and existing customers skipped. Shows count of successfully referred new contacts.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">❓</div>
+      <div class="cr-card-title">FAQ System</div>
+      <div class="cr-card-desc">Topics + Q&A with text, image, video support. Topic reordering. Auto-expands most popular topic on load. Search across topics and questions. Responsive collapsible UI.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">🔧</div>
+      <div class="cr-card-title">Feature Toggle System</div>
+      <div class="cr-card-desc">Admin enables/disables features (Appointment, Submit Bill) per business. Reflects immediately in Membership App. Database-driven config — no code changes needed.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">📍</div>
+      <div class="cr-card-title">Geo Code API + Store Discovery</div>
+      <div class="cr-card-desc">Profile score >50% required before store access. Geo Code API fetches merchant stores based on customer location. Items shown with average customer reviews.</div>
+    </div>
+    <div class="cr-card">
+      <div class="cr-card-icon">🌐</div>
+      <div class="cr-card-title">Language Translation</div>
+      <div class="cr-card-desc">Spring LocaleResolver for dynamic language switching via JS/AJAX — no page reload. Supports English, Hindi, Kannada, Spanish. Extensible to any language.</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- EDUCATION -->
+<section>
+  <div class="section-label">// 07 education</div>
+  <h2 class="section-title">Academic <span>Background</span></h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-period">2018 — 2020</div>
+      <div class="edu-degree">M.Tech — Structural Engineering</div>
+      <div class="edu-school">Visvesvaraya Technological University, Belagavi</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-period">2014 — 2018</div>
+      <div class="edu-degree">B.Tech — Civil Engineering</div>
+      <div class="edu-school">Ramaiah University of Applied Sciences, Bangalore</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-period">2012 — 2014</div>
+      <div class="edu-degree">PUC</div>
+      <div class="edu-school">Shree Guru Nagalingeshwara, Gulbarga</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- CONTACT -->
+<div id="contact-section">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label">// 08 contact</div>
+      <div class="contact-info-title">Let\'s <span style="color:var(--accent2)">Connect</span></div>
+      <p class="contact-info-sub">Open to full stack Java + React roles, AI integration projects, system design discussions, and interesting engineering challenges. Drop a message and I\'ll get back to you.</p>
+      <div class="contact-detail"><i class="fa-solid fa-paper-plane"></i> arjundargurathod@gmail.com</div>
+      <div class="contact-detail"><i class="fa-solid fa-square-phone"></i> +91 8217308285</div>
+      <div class="contact-detail"><i class="fa-solid fa-location-dot"></i> Bengaluru, Karnataka, India</div>
+      <div class="social-row">
+        <a href="https://github.com/arjunrathod1996" class="social-btn"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/arjundr/" class="social-btn"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+      <div style="margin-top:24px"><a href="Arjun Resume.pdf" download class="btn-primary">Download Resume</a></div>
+    </div>
+    <form class="contact-form" name="submit-to-google-sheet">
+      <input type="text" name="Name" placeholder="Your Name" required>
+      <input type="email" name="Email" placeholder="Your Email" required>
+      <input type="text" name="Subject" placeholder="Subject">
+      <textarea name="Message" rows="5" placeholder="Your Message"></textarea>
+      <button type="submit" class="form-submit">SEND MESSAGE</button>
+      <span id="msg" style="font-family:var(--mono);font-size:12px;color:var(--green)"></span>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Arjun Rathod · Full Stack Developer · Java + React + AI</span>
+  <span>Bengaluru, India · arjundargurathod@gmail.com</span>
+</footer>
 
 <script>
-
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-content");
-
-    function opentab(tabname){
-
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-
-        event.currentTarget.classList.add("active-link");
-
-        document.getElementById(tabname).classList.add("active-tab");
-    }
-
-</script>
-
-<script>
-
-var sidemenu = document.getElementById("sidemenu");
-
-function openmenu(){
-    sidemenu.style.right = "0";
+function showPanel(id) {
+  document.querySelectorAll('.screenshot-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.showcase-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
 }
 
-function closemenu(){
-    sidemenu.style.right = "-200px";
+const scriptURL='https://script.google.com/macros/s/AKfycbwqeZS7X3DDz-sQnJVXw2_KqR_jhR_VgwejLtSSovJwqATOsaLGuwwX-V0PwZ5RTNNpQA/exec';
+const form=document.forms['submit-to-google-sheet'];
+if(form){
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    fetch(scriptURL,{method:'POST',body:new FormData(form)})
+      .then(()=>{document.getElementById('msg').textContent='Message sent successfully!';form.reset();})
+      .catch(()=>{document.getElementById('msg').textContent='Error. Please email directly.';document.getElementById('msg').style.color='#ef4444';});
+  });
 }
 
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});
+},{threshold:0.05});
+document.querySelectorAll('.exp-card,.skill-card,.project-card,.feature-card,.cr-card,.edu-card,.screenshot-card').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(18px)';
+  el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+  observer.observe(el);
+});
 </script>
-
-<script>
-    const scriptURL = '<https://script.google.com/macros/s/AKfycbwqeZS7X3DDz-sQnJVXw2_KqR_jhR_VgwejLtSSovJwqATOsaLGuwwX-V0PwZ5RTNNpQA/exec>'
-    const form = document.forms['submit-to-google-sheet']
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => console.log('Success!', response))
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
-
 </body>
 </html>
